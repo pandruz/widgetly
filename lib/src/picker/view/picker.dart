@@ -4,8 +4,20 @@ import 'package:widgetly/src/modal/modal_repository.dart';
 import 'package:widgetly/src/picker/view/item_selector.dart';
 import 'package:flutter/material.dart';
 
+/// A customizable dropdown picker widget that displays selectable options in a modal sheet.
+///
+/// The picker shows the currently selected value and opens a modal with all available
+/// options when tapped. It supports optional labeling and custom styling.
 // ignore: must_be_immutable
 class PickerLy extends StatefulWidget {
+  /// Creates a picker with selectable options.
+  ///
+  /// The [selectedValue] is the currently selected item to display.
+  /// The [values] are the available options that can be selected.
+  /// The [updateValue] callback is called when a new option is selected.
+  /// The [label] is an optional description displayed next to the picker.
+  /// The [mainColor] defines the primary color for the modal header.
+  /// The [deleteAction] is an optional callback to add a delete button.
   PickerLy({
     super.key,
     this.label,
@@ -18,14 +30,33 @@ class PickerLy extends StatefulWidget {
     this.deleteAction,
   });
 
+  /// Optional label text displayed next to the picker.
+  /// Will be displayed in uppercase.
   final String? label;
+
+  /// Title text displayed in the modal header when the picker is opened.
+  /// Defaults to the [label] value if not provided.
   final String? modalTitle;
+
+  /// Maximum number of lines the label text can span.
+  /// Defaults to 1 if not specified.
   final int? labelMaxLines;
+
+  /// The primary color used for the modal header.
+  /// Defaults to blue if not specified.
   final Color? mainColor;
+
+  /// Collection of items that can be selected in the picker.
   final Iterable<dynamic> values;
+
+  /// Callback function triggered when a new value is selected.
   final Function(dynamic element) updateValue;
+
+  /// Optional callback function for a delete button.
+  /// If provided, a delete button will be displayed next to the picker.
   final Function()? deleteAction;
 
+  /// The currently selected value to display in the picker.
   dynamic selectedValue;
 
   @override

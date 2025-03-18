@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Added comments and descriptions
+
 ## 0.0.3
 
 - Added package info

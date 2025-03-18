@@ -3,7 +3,20 @@ import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+/// A customizable stepper widget for incrementing and decrementing values.
+///
+/// The stepper provides plus/minus buttons, a quantity display, and an optional
+/// description label. It supports quantity limits and custom styling.
 class StepperLy extends StatelessWidget {
+  /// Creates a stepper with increment/decrement buttons and quantity display.
+  ///
+  /// The [mainColor] defines the primary color of the buttons.
+  /// The [quantity] sets the initial value to display.
+  /// The [updateQuantity] callback is called when the value changes.
+  /// If [qtyLimit] is provided, it sets the maximum value that can be reached.
+  /// The [description] is an optional label displayed alongside the stepper.
+  /// If [outlined] is true, the buttons will have an outlined style.
+  /// The [descriptionMaxLines] controls how many lines the description can span.
   const StepperLy({
     super.key,
     required this.mainColor,
@@ -15,12 +28,29 @@ class StepperLy extends StatelessWidget {
     this.descriptionMaxLines,
   });
 
+  /// The primary color used for the stepper buttons.
   final Color mainColor;
+
+  /// The current quantity value displayed in the stepper.
   final int quantity;
+
+  /// Callback function triggered when the quantity changes.
   final Function(int) updateQuantity;
+
+  /// Optional upper limit for the quantity value.
+  /// If provided, the value cannot exceed this limit.
   final int? qtyLimit;
+
+  /// Optional description label displayed alongside the stepper.
+  /// Will be displayed in uppercase.
   final String? description;
+
+  /// When true, the buttons will have an outlined style instead of filled.
+  /// Defaults to false if not specified.
   final bool? outlined;
+
+  /// The maximum number of lines the description can span.
+  /// Defaults to 1 if not specified.
   final int? descriptionMaxLines;
 
   @override

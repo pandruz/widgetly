@@ -1,7 +1,17 @@
 name: widgetly
 description: "Customizable components ready to use"
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/aprizzo/widgetly
+repository: https://github.com/aprizzo/widgetly
+documentation: https://github.com/aprizzo/widgetly/blob/main/README.md
+
+# Add these tags
+topics:
+  - widgets
+  - ui
+  - components
+  - flutter-widgets
+  - customizable
 
 environment:
   sdk: ^3.7.0

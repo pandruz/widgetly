@@ -7,7 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:widgetly/src/localization/localization.dart';
 
+/// A customizable text field widget with optional label and various input controls.
+///
+/// This widget provides a complete text input solution with support for features like
+/// obscuring text, read-only mode, custom colors, and more.
 class TextFieldLy extends StatefulWidget {
+  /// Creates a customizable text field.
+  ///
+  /// The text field can have an optional [label], custom styling,
+  /// and various callback functions for user interactions.
   const TextFieldLy({
     super.key,
     this.label,
@@ -28,21 +36,62 @@ class TextFieldLy extends StatefulWidget {
     this.textAlignVertical,
   });
 
+  /// Optional label displayed next to the text field.
+  /// By default, displayed in uppercase unless [descriptionLowercased] is true.
   final String? label;
+
+  /// Placeholder text displayed when the text field is empty.
   final String? hintText;
+
+  /// Initial value of the text field.
   final dynamic initialValue;
+
+  /// Callback function triggered when the text field value changes.
   final Function(String value)? updateValue;
+
+  /// Callback function to toggle the visibility of the text (for password fields).
+  /// Used when [obscureText] is provided.
   final Function()? obscureTextFunction;
+
+  /// Callback function triggered when the user submits the text field.
   final Function(String value)? submitAction;
+
+  /// When true, the label is displayed in lowercase. Otherwise, it's in uppercase.
+  /// Defaults to false if not specified.
   final bool? descriptionLowercased;
+
+  /// When true, the text is obscured (for password input).
+  /// Defaults to false if not specified.
   final bool? obscureText;
+
+  /// When true, the text field cannot be edited.
+  /// Defaults to false if not specified.
   final bool? readOnly;
+
+  /// When true, text is automatically capitalized.
+  /// Defaults to false if not specified.
   final bool? textCapitalization;
+
+  /// Height of the text field.
+  /// Defaults to 55 if not specified.
   final double? height;
+
+  /// The primary color for the text field focus and cursor.
+  /// Defaults to blue if not specified.
   final Color? mainColor;
+
+  /// The keyboard action button type (e.g., next, done, send).
   final TextInputAction? textInputAction;
+
+  /// The type of keyboard to display (e.g., text, number, email).
   final TextInputType? keyboardType;
+
+  /// Optional controller for the text field.
+  /// If not provided, an internal controller is created.
   final TextEditingController? textEditingController;
+
+  /// Vertical alignment of text within the text field.
+  /// Defaults to TextAlignVertical.top if not specified.
   final TextAlignVertical? textAlignVertical;
 
   @override

@@ -2,7 +2,21 @@ import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:widgetly/src/extensions/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 
+/// A customizable app bar widget with support for title, navigation, and action buttons.
+///
+/// This app bar provides a consistent header across the application with
+/// customizable colors, back navigation, and trailing actions. It supports both
+/// text and widget titles, and handles loading states.
 class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
+  /// Creates a customizable app bar.
+  ///
+  /// The [title] parameter is displayed as text in the center of the app bar.
+  /// Alternatively, a custom [titleWidget] can be provided for more complex titles.
+  /// The [mainColor] defines the background color of the app bar.
+  /// The [backAction] callback is triggered when the back button is tapped.
+  /// A custom [leadingWidget] can replace the default back button.
+  /// When [isLoading] is true, interactive elements are disabled.
+  /// The [trailingWidgets] are displayed on the right side of the app bar.
   const AppBarLy({
     super.key,
     this.title,
@@ -14,12 +28,33 @@ class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
     this.trailingWidgets,
   });
 
+  /// The text displayed in the center of the app bar.
+  /// If null, an empty string is displayed unless [titleWidget] is provided.
   final String? title;
+
+  /// An optional widget to display instead of the text title.
+  /// If provided, this widget is used instead of the [title].
   final Widget? titleWidget;
+
+  /// The background color of the app bar.
+  /// Defaults to blue if not specified.
   final Color? mainColor;
+
+  /// Callback function triggered when the back button is tapped.
+  /// If null, no back button is displayed.
   final Function()? backAction;
+
+  /// An optional widget to display instead of the default back button.
+  /// If provided, this widget is used in the leading position.
   final Widget? leadingWidget;
+
+  /// When true, interactive elements (like the back button) are disabled.
+  /// This is useful during loading or processing operations.
+  /// Defaults to false if not specified.
   final bool? isLoading;
+
+  /// A list of widgets to display on the right side of the app bar.
+  /// These are typically action buttons.
   final List<Widget>? trailingWidgets;
 
   @override
