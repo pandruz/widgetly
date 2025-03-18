@@ -1,6 +1,7 @@
 import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:widgetly/src/extensions/iterable_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetly/src/text/view/text.dart';
 
 /// A customizable app bar widget with support for title, navigation, and action buttons.
 ///
@@ -77,7 +78,14 @@ class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
     return FittedBox(
       fit: BoxFit.scaleDown,
       alignment: Alignment.center,
-      child: titleWidget ?? Text(title ?? '', style: TextStyle(color: color, fontWeight: FontWeight.w500, fontSize: 22)),
+      child:
+          titleWidget ??
+          TextLy(
+            title ?? '',
+            color: color,
+            fontWeight: FontWeight.w500,
+            fontSize: 22,
+          ),
     );
   }
 
@@ -85,7 +93,10 @@ class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
     return leadingWidget != null
         ? leadingWidget!
         : backAction == null
-        ? SizedBox(height: MediaQuery.of(context).size.width * 0.06, width: MediaQuery.of(context).size.height * 0.06)
+        ? SizedBox(
+          height: MediaQuery.of(context).size.width * 0.06,
+          width: MediaQuery.of(context).size.height * 0.06,
+        )
         : GestureDetectorLy(
           onTap: () {
             if ((isLoading ?? false) == false) {
@@ -93,13 +104,21 @@ class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
               backAction!();
             }
           },
-          child: Opacity(opacity: (isLoading ?? false) == false ? 1 : 0.3, child: Center(child: Icon(Icons.arrow_back, color: color))),
+          child: Opacity(
+            opacity: (isLoading ?? false) == false ? 1 : 0.3,
+            child: Center(child: Icon(Icons.arrow_back, color: color)),
+          ),
         );
   }
 
   List<Widget> buildActions(BuildContext context) {
     return trailingWidgets.isNullOrEmpty
-        ? [SizedBox(height: MediaQuery.of(context).size.width * 0.06, width: MediaQuery.of(context).size.height * 0.06)]
+        ? [
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.06,
+            width: MediaQuery.of(context).size.height * 0.06,
+          ),
+        ]
         : trailingWidgets!;
   }
 

@@ -9,6 +9,10 @@ class DividerLy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Divider(thickness: thickness ?? 1, height: height, color: ColorsLy.darkGrey);
+    return Divider(
+      thickness: thickness ?? 1,
+      height: height,
+      color: ColorsLy.darkGrey,
+    );
   }
 }

@@ -1,9 +1,16 @@
 import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetly/src/text/view/text.dart';
 
 // ignore: must_be_immutable
 class BottomSheetLy extends StatelessWidget {
-  BottomSheetLy({super.key, this.mainColor, required this.title, required this.child, this.cancelFunction});
+  BottomSheetLy({
+    super.key,
+    this.mainColor,
+    required this.title,
+    required this.child,
+    this.cancelFunction,
+  });
 
   Color? mainColor;
   String? title;
@@ -20,7 +27,10 @@ class BottomSheetLy extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: mainColor ?? Colors.blue,
-              borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
             ),
             child: Stack(
               alignment: Alignment.centerRight,
@@ -32,9 +42,11 @@ class BottomSheetLy extends StatelessWidget {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(10, 10, 30, 10),
-                        child: Text(
+                        child: TextLy(
                           title!,
-                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: Colors.white),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                          color: Colors.white,
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -50,7 +62,10 @@ class BottomSheetLy extends StatelessWidget {
                       cancelFunction!();
                     }
                   },
-                  child: Padding(padding: const EdgeInsets.fromLTRB(60, 8, 10, 8), child: Icon(Icons.close, color: Colors.white, size: 22)),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(60, 8, 10, 8),
+                    child: Icon(Icons.close, color: Colors.white, size: 22),
+                  ),
                 ),
               ],
             ),
@@ -59,7 +74,10 @@ class BottomSheetLy extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(title != null ? 0 : 10), topRight: Radius.circular(title != null ? 0 : 10)),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(title != null ? 0 : 10),
+                topRight: Radius.circular(title != null ? 0 : 10),
+              ),
             ),
             child: Column(children: [Expanded(child: child)]),
           ),

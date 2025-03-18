@@ -2,6 +2,7 @@ import 'package:widgetly/src/extensions/colors_extensions.dart';
 import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetly/src/text/view/text.dart';
 
 /// A customizable stepper widget for incrementing and decrementing values.
 ///
@@ -73,7 +74,9 @@ class StepperLy extends StatelessWidget {
         onTap: () {
           if (decrement == false) {
             if (qtyLimit != null && quantity < qtyLimit!) {
-              updateQuantity(quantity + 1 <= qtyLimit! ? quantity + 1 : qtyLimit!);
+              updateQuantity(
+                quantity + 1 <= qtyLimit! ? quantity + 1 : qtyLimit!,
+              );
             } else {
               updateQuantity(quantity + 1);
             }
@@ -98,12 +101,18 @@ class StepperLy extends StatelessWidget {
   }
 
   Widget buildButton(BuildContext context, int? limit, bool isAddButton) {
-    final width = (MediaQuery.of(context).size.width / (kIsWeb == true ? 10 : 1.9)) / 3;
+    final width =
+        (MediaQuery.of(context).size.width / (kIsWeb == true ? 10 : 1.9)) / 3;
     final height = MediaQuery.of(context).size.height / 16;
     final isDisabled = quantity == limit;
     final buttonColor =
-        outlined == true ? Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0) : mainColor.withValues(alpha: isDisabled ? 0.3 : 1.0);
-    final textColor = outlined == true ? mainColor.withValues(alpha: isDisabled ? 0.3 : 1.0) : Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0);
+        outlined == true
+            ? Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0)
+            : mainColor.withValues(alpha: isDisabled ? 0.3 : 1.0);
+    final textColor =
+        outlined == true
+            ? mainColor.withValues(alpha: isDisabled ? 0.3 : 1.0)
+            : Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0);
     return Container(
       width: width,
       height: height,
@@ -118,23 +127,36 @@ class StepperLy extends StatelessWidget {
         border: Border.all(
           strokeAlign: BorderSide.strokeAlignInside,
           width: 2.5,
-          color: outlined == true ? (isDisabled ? mainColor.withValues(alpha: 0.3) : mainColor) : Colors.transparent,
+          color:
+              outlined == true
+                  ? (isDisabled ? mainColor.withValues(alpha: 0.3) : mainColor)
+                  : Colors.transparent,
         ),
       ),
-      child: Center(child: Text(isAddButton ? '+' : '-', style: TextStyle(fontWeight: FontWeight.bold, color: textColor, fontSize: 28))),
+      child: Center(
+        child: TextLy(
+          isAddButton ? '+' : '-',
+          fontWeight: FontWeight.bold,
+          color: textColor,
+          fontSize: 28,
+        ),
+      ),
     );
   }
 
   Widget buildText(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height / 16,
-      decoration: BoxDecoration(color: Colors.white, border: Border.all(color: ColorsLy.darkGrey, width: 2)),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: ColorsLy.darkGrey, width: 2),
+      ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(4, 2, 4, 2),
         child: FittedBox(
           fit: BoxFit.scaleDown,
           alignment: Alignment.center,
-          child: Text('$quantity', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+          child: TextLy('$quantity', fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
     );
@@ -145,9 +167,10 @@ class StepperLy extends StatelessWidget {
       width: MediaQuery.of(context).size.width * (kIsWeb == true ? 0.1 : 0.26),
       child: Padding(
         padding: const EdgeInsets.only(right: 5),
-        child: Text(
+        child: TextLy(
           description!.toUpperCase(),
-          style: TextStyle(color: ColorsLy.darkGrey, fontSize: 14),
+          color: ColorsLy.darkGrey,
+          fontSize: 14,
           maxLines: descriptionMaxLines ?? 1,
           overflow: TextOverflow.ellipsis,
         ),

@@ -1,3 +1,7 @@
+## 0.0.5
+
+- Added package config + examples
+
 ## 0.0.4
 
 - Added comments and descriptions

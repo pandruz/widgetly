@@ -2,6 +2,7 @@ import 'package:widgetly/src/button/view/button.dart';
 import 'package:widgetly/src/extensions/colors_extensions.dart';
 import 'package:widgetly/src/localization/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetly/src/text/view/text.dart';
 
 /// A customizable placeholder widget for empty states or loading screens.
 ///
@@ -23,8 +24,6 @@ class PlaceholderLy extends StatelessWidget {
     this.resetAction,
     this.resetButtonLabel,
     this.resetButtonColor,
-    this.paddingTop,
-    this.paddingBottom,
     this.mainColor,
   });
 
@@ -47,12 +46,6 @@ class PlaceholderLy extends StatelessWidget {
   /// Defaults to red if not provided.
   final Color? resetButtonColor;
 
-  /// Additional padding at the top of the placeholder.
-  final double? paddingTop;
-
-  /// Additional padding at the bottom of the placeholder.
-  final double? paddingBottom;
-
   /// The color used for the icon and text.
   /// Defaults to black for the icon and dark grey for the text if not provided.
   final Color? mainColor;
@@ -66,22 +59,32 @@ class PlaceholderLy extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
-          children: [buildIcon(), buildText(), if (resetAction != null) buildReset()],
+          children: [
+            buildIcon(),
+            buildText(),
+            if (resetAction != null) buildReset(),
+          ],
         ),
       ),
     );
   }
 
   Widget buildIcon() {
-    return Icon(icon ?? Icons.search, color: mainColor ?? Colors.black, size: 90);
+    return Icon(
+      icon ?? Icons.search,
+      color: mainColor ?? Colors.black,
+      size: 90,
+    );
   }
 
   Widget buildText() {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
-      child: Text(
+      child: TextLy(
         placeholderText,
-        style: TextStyle(color: mainColor ?? ColorsLy.darkGrey, fontSize: 30, fontWeight: FontWeight.w500),
+        color: mainColor ?? ColorsLy.darkGrey,
+        fontSize: 30,
+        fontWeight: FontWeight.w500,
         textAlign: TextAlign.center,
       ),
     );

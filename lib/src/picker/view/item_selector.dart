@@ -3,10 +3,17 @@ import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:widgetly/src/localization/localization.dart';
 import 'package:widgetly/src/placeholder/view/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetly/src/text/view/text.dart';
 
 // ignore: must_be_immutable
 class ItemSelectorLy extends StatelessWidget {
-  ItemSelectorLy({super.key, this.label, required this.selectedValue, required this.values, required this.updateValue});
+  ItemSelectorLy({
+    super.key,
+    this.label,
+    required this.selectedValue,
+    required this.values,
+    required this.updateValue,
+  });
 
   final String? label;
   final Iterable<dynamic> values;
@@ -27,7 +34,10 @@ class ItemSelectorLy extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [for (var element in values) buildElement(context, element)],
+                    children: [
+                      for (var element in values)
+                        buildElement(context, element),
+                    ],
                   ),
                 ),
               ),
@@ -35,7 +45,12 @@ class ItemSelectorLy extends StatelessWidget {
   }
 
   Widget buildNoElements() {
-    return Center(child: PlaceholderLy(icon: Icons.search_off, placeholderText: LocalizationLy.instance.translate('No element found')));
+    return Center(
+      child: PlaceholderLy(
+        icon: Icons.search_off,
+        placeholderText: LocalizationLy.instance.translate('No element found'),
+      ),
+    );
   }
 
   Widget buildElement(BuildContext context, dynamic element) {
@@ -55,8 +70,16 @@ class ItemSelectorLy extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(element == null ? '-' : '$element', style: TextStyle(fontSize: 20, color: Colors.black)),
-              if (values.last != element) Padding(padding: const EdgeInsets.only(top: 5), child: DividerLy(height: 1)),
+              TextLy(
+                element == null ? '-' : '$element',
+                fontSize: 20,
+                color: Colors.black,
+              ),
+              if (values.last != element)
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: DividerLy(height: 1),
+                ),
             ],
           ),
         ),

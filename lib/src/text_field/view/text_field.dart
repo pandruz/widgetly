@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:widgetly/src/localization/localization.dart';
+import 'package:widgetly/src/text/view/text.dart';
 
 /// A customizable text field widget with optional label and various input controls.
 ///
@@ -105,8 +106,14 @@ class _TextFieldLyState extends State<TextFieldLy> {
 
   @override
   void initState() {
-    LocalizationLy.instance.setLocale(Platform.localeName.isNotEmpty ? Platform.localeName.substring(0, Platform.localeName.indexOf('_')) : 'en');
-    controller = TextEditingController(text: widget.initialValue == null ? null : '${widget.initialValue}');
+    LocalizationLy.instance.setLocale(
+      Platform.localeName.isNotEmpty
+          ? Platform.localeName.substring(0, Platform.localeName.indexOf('_'))
+          : 'en',
+    );
+    controller = TextEditingController(
+      text: widget.initialValue == null ? null : '${widget.initialValue}',
+    );
     if (widget.mainColor != null) {
       mainColor = widget.mainColor!;
     }
@@ -115,8 +122,11 @@ class _TextFieldLyState extends State<TextFieldLy> {
 
   @override
   Widget build(BuildContext context) {
-    (widget.textEditingController ?? controller).selection = TextSelection.fromPosition(
-      TextPosition(offset: (widget.textEditingController ?? controller).text.length),
+    (widget.textEditingController ?? controller)
+        .selection = TextSelection.fromPosition(
+      TextPosition(
+        offset: (widget.textEditingController ?? controller).text.length,
+      ),
     );
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -136,7 +146,11 @@ class _TextFieldLyState extends State<TextFieldLy> {
             child: Stack(
               children: [
                 buildTextField(),
-                if ((widget.textEditingController ?? controller).text.isNotEmpty && widget.readOnly != true) buildButtons(),
+                if ((widget.textEditingController ?? controller)
+                        .text
+                        .isNotEmpty &&
+                    widget.readOnly != true)
+                  buildButtons(),
               ],
             ),
           ),
@@ -172,7 +186,12 @@ class _TextFieldLyState extends State<TextFieldLy> {
                 onTap: () {
                   widget.obscureTextFunction!();
                 },
-                child: Icon(widget.obscureText == false ? CupertinoIcons.eye : CupertinoIcons.eye_slash, color: mainColor),
+                child: Icon(
+                  widget.obscureText == false
+                      ? CupertinoIcons.eye
+                      : CupertinoIcons.eye_slash,
+                  color: mainColor,
+                ),
               ),
             ),
         ],
@@ -184,13 +203,19 @@ class _TextFieldLyState extends State<TextFieldLy> {
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       child: SizedBox(
-        width: kIsWeb == true ? (MediaQuery.of(context).size.width * 2 / 3) / 3.5 : MediaQuery.of(context).size.width / 3.8,
+        width:
+            kIsWeb == true
+                ? (MediaQuery.of(context).size.width * 2 / 3) / 3.5
+                : MediaQuery.of(context).size.width / 3.8,
         child: FittedBox(
           alignment: Alignment.centerLeft,
           fit: BoxFit.scaleDown,
-          child: Text(
-            widget.descriptionLowercased == true ? widget.label! : widget.label!.toUpperCase(),
-            style: TextStyle(color: ColorsLy.darkGrey, fontSize: 14),
+          child: TextLy(
+            widget.descriptionLowercased == true
+                ? widget.label!
+                : widget.label!.toUpperCase(),
+            color: ColorsLy.darkGrey,
+            fontSize: 14,
             maxLines: 1,
           ),
         ),
@@ -214,7 +239,12 @@ class _TextFieldLyState extends State<TextFieldLy> {
                         onTap: () {
                           node.unfocus();
                         },
-                        child: Padding(padding: const EdgeInsets.all(10), child: Text(LocalizationLy.instance.translate('Close'))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: TextLy(
+                            LocalizationLy.instance.translate('Close'),
+                          ),
+                        ),
                       );
                     },
                   ],
@@ -231,7 +261,10 @@ class _TextFieldLyState extends State<TextFieldLy> {
         top: 8,
         right:
             10 +
-            ((widget.textEditingController ?? controller).text.isNotEmpty && widget.readOnly != true ? 28 : 0) +
+            ((widget.textEditingController ?? controller).text.isNotEmpty &&
+                    widget.readOnly != true
+                ? 28
+                : 0) +
             (widget.obscureText != null ? 36 : 0),
         bottom: 8,
       ),
@@ -240,9 +273,16 @@ class _TextFieldLyState extends State<TextFieldLy> {
       hintText: widget.hintText,
       hintStyle: TextStyle(color: ColorsLy.darkGrey, fontSize: 20),
       fillColor: Colors.white,
-      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: mainColor, width: 2), borderRadius: BorderRadius.circular(10)),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: mainColor, width: 2),
+        borderRadius: BorderRadius.circular(10),
+      ),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: widget.readOnly == true ? Colors.transparent : ColorsLy.darkGrey, width: 1.5),
+        borderSide: BorderSide(
+          color:
+              widget.readOnly == true ? Colors.transparent : ColorsLy.darkGrey,
+          width: 1.5,
+        ),
         borderRadius: BorderRadius.circular(10),
       ),
     );
@@ -254,7 +294,10 @@ class _TextFieldLyState extends State<TextFieldLy> {
       config: buildKeyboardConfig(),
       child: TextField(
         readOnly: widget.readOnly ?? false,
-        textCapitalization: widget.textCapitalization == true ? TextCapitalization.characters : TextCapitalization.none,
+        textCapitalization:
+            widget.textCapitalization == true
+                ? TextCapitalization.characters
+                : TextCapitalization.none,
         keyboardType: widget.keyboardType,
         focusNode: focusNode,
         textInputAction: widget.textInputAction,
@@ -266,7 +309,8 @@ class _TextFieldLyState extends State<TextFieldLy> {
         onChanged: (String value) {
           setState(() {
             (widget.textEditingController ?? controller).text = value;
-            (widget.textEditingController ?? controller).selection = TextSelection.fromPosition(TextPosition(offset: value.length));
+            (widget.textEditingController ?? controller).selection =
+                TextSelection.fromPosition(TextPosition(offset: value.length));
             if (widget.updateValue != null) {
               widget.updateValue!(value);
             }
@@ -278,7 +322,10 @@ class _TextFieldLyState extends State<TextFieldLy> {
             widget.submitAction!(value);
           }
         },
-        style: TextStyle(fontSize: 24, color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black),
+        style: TextStyle(
+          fontSize: 24,
+          color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black,
+        ),
         textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.top,
         decoration: buildDecoration(),
       ),

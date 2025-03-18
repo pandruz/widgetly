@@ -7,3 +7,4 @@ export 'src/placeholder/view/placeholder.dart';
 export 'src/stepper/view/stepper.dart';
 export 'src/text_field/view/text_field.dart';
 export 'src/toggle/view/toggle.dart';
+export 'src/config/widgetly_config.dart';

@@ -1,5 +1,6 @@
 import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetly/src/text/view/text.dart';
 
 /// A customizable button widget with different states and styling options.
 ///
@@ -14,7 +15,14 @@ class ButtonLy extends StatelessWidget {
   /// The [buttonFunc] is called when the button is tapped.
   /// If [showOutline] is true, the button will have an outlined style.
   /// If [isLoading] is true, the button will display a loading indicator.
-  const ButtonLy({super.key, required this.label, required this.mainColor, this.buttonFunc, this.showOutline, this.isLoading});
+  const ButtonLy({
+    super.key,
+    required this.label,
+    required this.mainColor,
+    this.buttonFunc,
+    this.showOutline,
+    this.isLoading,
+  });
 
   /// The text displayed on the button.
   /// Will be displayed in uppercase if the button is actionable.
@@ -48,7 +56,12 @@ class ButtonLy extends StatelessWidget {
       child: Container(
         height: 45,
         decoration: buildDecoration(),
-        child: Padding(padding: const EdgeInsets.symmetric(vertical: 5), child: Center(child: isLoading == true ? buildLoading() : buildButton())),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          child: Center(
+            child: isLoading == true ? buildLoading() : buildButton(),
+          ),
+        ),
       ),
     );
   }
@@ -59,25 +72,29 @@ class ButtonLy extends StatelessWidget {
       alignment: Alignment.center,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Text(
+        child: TextLy(
           buttonFunc != null ? label.toUpperCase() : label,
-          style: TextStyle(
-            color:
-                showOutline == true
-                    ? mainColor
-                    : mainColor == Colors.white
-                    ? Colors.black
-                    : Colors.white,
-            fontSize: 26,
-            fontWeight: FontWeight.w500,
-          ),
+          color:
+              showOutline == true
+                  ? mainColor
+                  : mainColor == Colors.white
+                  ? Colors.black
+                  : Colors.white,
+          fontSize: 26,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
   }
 
   Widget buildLoading() {
-    return SizedBox(height: 25, width: 25, child: CircularProgressIndicator(color: mainColor == Colors.white ? Colors.black : Colors.white));
+    return SizedBox(
+      height: 25,
+      width: 25,
+      child: CircularProgressIndicator(
+        color: mainColor == Colors.white ? Colors.black : Colors.white,
+      ),
+    );
   }
 
   BoxDecoration buildDecoration() {

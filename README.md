@@ -1,7 +1,6 @@
 [![Pub Version](https://img.shields.io/pub/v/widgetly)](https://pub.dev/packages/widgetly)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Flutter Platform](https://img.shields.io/badge/Platform-Flutter-02569B.svg)](https://flutter.dev)
-![Coverage](https://img.shields.io/badge/coverage-0%25-red)
 
 # Widgetly
 
@@ -14,6 +13,34 @@ To use this package, add `widgetly` as a dependency in your `pubspec.yaml` file:
 ```yaml
 dependencies:
   widgetly: ^0.0.3
+```
+
+## Configuration
+
+Widgetly can be configured globally to maintain consistent styling across all components:
+
+```dart
+void main() {
+  // Initialize Widgetly with your preferred configuration. If no configuration
+  // is provided, the default values will be automatically used.
+  WidgetlyConfig.initialize(
+    mainColor: Colors.purple, // Default is Colors.blue
+    fontFamily: 'Roboto', // If not specified, will use device's font
+    locale: const Locale('it'), // Default is Locale('en')
+  );
+
+  runApp(MyApp());
+}
+```
+
+Components will use these global settings by default, but you can always override them for individual instances:
+
+```dart
+ButtonLy(
+  label: 'CUSTOM',
+  mainColor: Colors.orange,  // This overrides the global mainColor
+  buttonFunc: () => buttonFunc(),
+)
 ```
 
 ## Components

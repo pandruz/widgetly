@@ -3,6 +3,7 @@ import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:widgetly/src/modal/modal_repository.dart';
 import 'package:widgetly/src/picker/view/item_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetly/src/text/view/text.dart';
 
 /// A customizable dropdown picker widget that displays selectable options in a modal sheet.
 ///
@@ -82,9 +83,17 @@ class _CustomPickerState extends State<PickerLy> {
     return Expanded(
       flex: 4,
       child: SizedBox(
-        width: widget.label == null ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width / 1.9,
+        width:
+            widget.label == null
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width / 1.9,
         height: 45,
-        child: Row(children: [buildPicker(context), if (widget.deleteAction != null) buildDelete()]),
+        child: Row(
+          children: [
+            buildPicker(context),
+            if (widget.deleteAction != null) buildDelete(),
+          ],
+        ),
       ),
     );
   }
@@ -94,9 +103,10 @@ class _CustomPickerState extends State<PickerLy> {
       width: MediaQuery.of(context).size.width / 3.5,
       child: Padding(
         padding: const EdgeInsets.only(right: 10),
-        child: Text(
+        child: TextLy(
           widget.label!.toUpperCase(),
-          style: TextStyle(color: ColorsLy.darkGrey, fontSize: 14),
+          color: ColorsLy.darkGrey,
+          fontSize: 14,
           maxLines: widget.labelMaxLines ?? 1,
           overflow: TextOverflow.ellipsis,
         ),
@@ -135,16 +145,26 @@ class _CustomPickerState extends State<PickerLy> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Text(
-                      widget.selectedValue == null ? '-' : '${widget.selectedValue}',
-                      style: TextStyle(fontSize: 24, color: Colors.black),
+                    child: TextLy(
+                      widget.selectedValue == null
+                          ? '-'
+                          : '${widget.selectedValue}',
+                      fontSize: 24,
+                      color: Colors.black,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 10),
-                    child: SizedBox(height: 55, child: Icon(Icons.arrow_drop_down, color: Colors.black, size: 36)),
+                    child: SizedBox(
+                      height: 55,
+                      child: Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.black,
+                        size: 36,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -169,7 +189,10 @@ class _CustomPickerState extends State<PickerLy> {
         },
         child: Container(
           decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-          child: Padding(padding: const EdgeInsets.all(5), child: Icon(Icons.close, color: Colors.white, size: 18)),
+          child: Padding(
+            padding: const EdgeInsets.all(5),
+            child: Icon(Icons.close, color: Colors.white, size: 18),
+          ),
         ),
       ),
     );

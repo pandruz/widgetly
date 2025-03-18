@@ -1,5 +1,6 @@
 import 'package:widgetly/src/extensions/colors_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetly/src/text/view/text.dart';
 
 /// A customizable widget for displaying a label alongside a value.
 ///
@@ -76,7 +77,11 @@ class LabelledTextLy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: crossAxisAlignment ?? ((maxLines ?? 0) < 2 ? CrossAxisAlignment.end : CrossAxisAlignment.start),
+      crossAxisAlignment:
+          crossAxisAlignment ??
+          ((maxLines ?? 0) < 2
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start),
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [buildDescription(), buildValue()],
     );
@@ -86,15 +91,24 @@ class LabelledTextLy extends StatelessWidget {
     return Expanded(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [Expanded(child: disableOverflow == true ? FittedBox(fit: BoxFit.scaleDown, child: buildText()) : buildText())],
+        children: [
+          Expanded(
+            child:
+                disableOverflow == true
+                    ? FittedBox(fit: BoxFit.scaleDown, child: buildText())
+                    : buildText(),
+          ),
+        ],
       ),
     );
   }
 
   Widget buildText() {
-    return Text(
+    return TextLy(
       '$value',
-      style: TextStyle(color: valueColor, fontSize: valueSize, fontWeight: fontWeight),
+      color: valueColor,
+      fontSize: valueSize,
+      fontWeight: fontWeight,
       maxLines: maxLines ?? 2,
       overflow: TextOverflow.ellipsis,
     );

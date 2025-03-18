@@ -13,7 +13,13 @@ class GestureDetectorLy extends StatelessWidget {
   /// The [onTap] callback is triggered when the user taps on the widget.
   /// The [onLongPress] callback is triggered when the user long-presses the widget.
   /// If [vibrate] is true, haptic feedback will be provided on interaction.
-  const GestureDetectorLy({super.key, required this.child, this.onTap, this.onLongPress, this.vibrate});
+  const GestureDetectorLy({
+    super.key,
+    required this.child,
+    this.onTap,
+    this.onLongPress,
+    this.vibrate,
+  });
 
   /// The widget that will respond to gestures.
   final Widget child;
