@@ -1,3 +1,7 @@
+## 0.0.6
+
+- Fixed colors usage
+
 ## 0.0.5
 
 - Added package config + examples

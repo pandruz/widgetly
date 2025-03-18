@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:widgetly/src/localization/localization.dart';
 import 'package:widgetly/src/text/view/text.dart';
+import 'package:widgetly/widgetly.dart';
 
 /// A customizable text field widget with optional label and various input controls.
 ///
@@ -102,7 +103,7 @@ class TextFieldLy extends StatefulWidget {
 class _TextFieldLyState extends State<TextFieldLy> {
   TextEditingController controller = TextEditingController();
   FocusNode focusNode = FocusNode();
-  Color mainColor = Colors.blue;
+  Color mainColor = WidgetlyConfig().mainColor;
 
   @override
   void initState() {

@@ -1,6 +1,7 @@
 import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetly/src/text/view/text.dart';
+import 'package:widgetly/widgetly.dart';
 
 // ignore: must_be_immutable
 class BottomSheetLy extends StatelessWidget {
@@ -26,7 +27,7 @@ class BottomSheetLy extends StatelessWidget {
         if (title != null)
           Container(
             decoration: BoxDecoration(
-              color: mainColor ?? Colors.blue,
+              color: mainColor ?? WidgetlyConfig().mainColor,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),

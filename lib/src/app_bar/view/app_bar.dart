@@ -2,6 +2,7 @@ import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:widgetly/src/extensions/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetly/src/text/view/text.dart';
+import 'package:widgetly/widgetly.dart';
 
 /// A customizable app bar widget with support for title, navigation, and action buttons.
 ///
@@ -60,7 +61,7 @@ class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = mainColor ?? Colors.blue;
+    Color color = mainColor ?? WidgetlyConfig().mainColor;
     return PreferredSize(
       preferredSize: const Size.fromHeight(55),
       child: AppBar(
@@ -82,7 +83,7 @@ class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
           titleWidget ??
           TextLy(
             title ?? '',
-            color: color,
+            color: color == Colors.black ? Colors.white : null,
             fontWeight: FontWeight.w500,
             fontSize: 22,
           ),
@@ -106,7 +107,12 @@ class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
           },
           child: Opacity(
             opacity: (isLoading ?? false) == false ? 1 : 0.3,
-            child: Center(child: Icon(Icons.arrow_back, color: color)),
+            child: Center(
+              child: Icon(
+                Icons.arrow_back,
+                color: color == Colors.black ? Colors.white : Colors.black,
+              ),
+            ),
           ),
         );
   }
