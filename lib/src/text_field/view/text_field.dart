@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:widgetly/src/extensions/colors_extensions.dart';
-import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

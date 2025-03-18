@@ -1,4 +1,3 @@
-import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:widgetly/src/extensions/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetly/src/text/view/text.dart';
