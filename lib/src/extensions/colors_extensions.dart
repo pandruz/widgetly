@@ -16,6 +16,6 @@ extension HexColor on Color {
       '${b.round().toRadixString(16).padLeft(2, '0')}';
 }
 
-extension ColorsKit on Color {
+extension ColorsLy on Color {
   static final darkGrey = HexColor.fromHex('7D7D7D');
 }

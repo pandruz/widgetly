@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class GestureDetectorKit extends StatelessWidget {
-  const GestureDetectorKit({super.key, required this.child, this.onTap, this.onLongPress, this.vibrate});
+class GestureDetectorLy extends StatelessWidget {
+  const GestureDetectorLy({super.key, required this.child, this.onTap, this.onLongPress, this.vibrate});
 
   final Widget child;
   final Function()? onTap;

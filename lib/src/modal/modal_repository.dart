@@ -1,4 +1,4 @@
-import 'package:flutkit/src/modal/bottom_sheet.dart';
+import 'package:widgetly/src/modal/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class ModalRepository {
@@ -22,7 +22,7 @@ class ModalRepository {
         builder: (BuildContext context) {
           return SizedBox(
             height: MediaQuery.of(context).size.height * (isBig == true ? 0.9 : 0.7),
-            child: BottomSheetKit(mainColor: mainColor, title: title, cancelFunction: cancelFunction, child: bottomSheet),
+            child: BottomSheetLy(mainColor: mainColor, title: title, cancelFunction: cancelFunction, child: bottomSheet),
           );
         },
       );

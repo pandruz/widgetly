@@ -1,12 +1,12 @@
-import 'package:flutkit/src/divider/view/divider.dart';
-import 'package:flutkit/src/gesture_detector/view/gesture_detector.dart';
-import 'package:flutkit/src/localization/localization.dart';
-import 'package:flutkit/src/placeholder/view/placeholder.dart';
+import 'package:widgetly/src/divider/view/divider.dart';
+import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
+import 'package:widgetly/src/localization/localization.dart';
+import 'package:widgetly/src/placeholder/view/placeholder.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class ItemSelectorKit extends StatelessWidget {
-  ItemSelectorKit({super.key, this.label, required this.selectedValue, required this.values, required this.updateValue});
+class ItemSelectorLy extends StatelessWidget {
+  ItemSelectorLy({super.key, this.label, required this.selectedValue, required this.values, required this.updateValue});
 
   final String? label;
   final Iterable<dynamic> values;
@@ -35,11 +35,11 @@ class ItemSelectorKit extends StatelessWidget {
   }
 
   Widget buildNoElements() {
-    return Center(child: PlaceholderKit(icon: Icons.search_off, placeholderText: LocalizationKit.instance.translate('No element found')));
+    return Center(child: PlaceholderLy(icon: Icons.search_off, placeholderText: LocalizationLy.instance.translate('No element found')));
   }
 
   Widget buildElement(BuildContext context, dynamic element) {
-    return GestureDetectorKit(
+    return GestureDetectorLy(
       onTap: () {
         if (element != null) {
           selectedValue = element!;
@@ -56,7 +56,7 @@ class ItemSelectorKit extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(element == null ? '-' : '$element', style: TextStyle(fontSize: 20, color: Colors.black)),
-              if (values.last != element) Padding(padding: const EdgeInsets.only(top: 5), child: DividerKit(height: 1)),
+              if (values.last != element) Padding(padding: const EdgeInsets.only(top: 5), child: DividerLy(height: 1)),
             ],
           ),
         ),

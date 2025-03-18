@@ -1,10 +1,10 @@
-import 'package:flutkit/src/button/view/button.dart';
-import 'package:flutkit/src/extensions/colors_extensions.dart';
-import 'package:flutkit/src/localization/localization.dart';
+import 'package:widgetly/src/button/view/button.dart';
+import 'package:widgetly/src/extensions/colors_extensions.dart';
+import 'package:widgetly/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 
-class PlaceholderKit extends StatelessWidget {
-  const PlaceholderKit({
+class PlaceholderLy extends StatelessWidget {
+  const PlaceholderLy({
     super.key,
     this.icon,
     required this.placeholderText,
@@ -49,7 +49,7 @@ class PlaceholderKit extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10),
       child: Text(
         placeholderText,
-        style: TextStyle(color: mainColor ?? ColorsKit.darkGrey, fontSize: 30, fontWeight: FontWeight.w500),
+        style: TextStyle(color: mainColor ?? ColorsLy.darkGrey, fontSize: 30, fontWeight: FontWeight.w500),
         textAlign: TextAlign.center,
       ),
     );
@@ -58,8 +58,8 @@ class PlaceholderKit extends StatelessWidget {
   Widget buildReset() {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
-      child: ButtonKit(
-        label: resetButtonLabel ?? LocalizationKit.instance.translate('Reset'),
+      child: ButtonLy(
+        label: resetButtonLabel ?? LocalizationLy.instance.translate('Reset'),
         buttonFunc: () {
           resetAction!();
         },

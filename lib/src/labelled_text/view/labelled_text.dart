@@ -1,8 +1,8 @@
-import 'package:flutkit/src/extensions/colors_extensions.dart';
+import 'package:widgetly/src/extensions/colors_extensions.dart';
 import 'package:flutter/material.dart';
 
-class LabelledTextKit extends StatelessWidget {
-  const LabelledTextKit({
+class LabelledTextLy extends StatelessWidget {
+  const LabelledTextLy({
     super.key,
     required this.label,
     this.value,
@@ -63,7 +63,7 @@ class LabelledTextKit extends StatelessWidget {
         width: largeDescr == true ? 120 : 360 / (descriptionWidthDivider ?? 4),
         child: Text(
           (label ?? '').isEmpty ? '-' : label!.toUpperCase(),
-          style: TextStyle(color: ColorsKit.darkGrey, fontSize: 14),
+          style: TextStyle(color: ColorsLy.darkGrey, fontSize: 14),
           maxLines: labelMaxLines ?? 1,
           overflow: TextOverflow.ellipsis,
         ),

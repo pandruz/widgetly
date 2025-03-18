@@ -1,9 +1,9 @@
-import 'package:flutkit/src/gesture_detector/view/gesture_detector.dart';
+import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class BottomSheetKit extends StatelessWidget {
-  BottomSheetKit({super.key, this.mainColor, required this.title, required this.child, this.cancelFunction});
+class BottomSheetLy extends StatelessWidget {
+  BottomSheetLy({super.key, this.mainColor, required this.title, required this.child, this.cancelFunction});
 
   Color? mainColor;
   String? title;
@@ -43,7 +43,7 @@ class BottomSheetKit extends StatelessWidget {
                     ),
                   ],
                 ),
-                GestureDetectorKit(
+                GestureDetectorLy(
                   onTap: () {
                     Navigator.of(context).pop();
                     if (cancelFunction != null) {

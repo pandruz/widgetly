@@ -1,8 +1,8 @@
-import 'package:flutkit/src/extensions/colors_extensions.dart';
+import 'package:widgetly/src/extensions/colors_extensions.dart';
 import 'package:flutter/material.dart';
 
-class ToggleKit extends StatefulWidget {
-  const ToggleKit({super.key, required this.description, required this.updateFunc, required this.toggleValue, this.readOnly, this.mainColor});
+class ToggleLy extends StatefulWidget {
+  const ToggleLy({super.key, required this.description, required this.updateFunc, required this.toggleValue, this.readOnly, this.mainColor});
 
   final String description;
   final Function(bool value) updateFunc;
@@ -11,10 +11,10 @@ class ToggleKit extends StatefulWidget {
   final Color? mainColor;
 
   @override
-  State<ToggleKit> createState() => _RPToggleState();
+  State<ToggleLy> createState() => _RPToggleState();
 }
 
-class _RPToggleState extends State<ToggleKit> {
+class _RPToggleState extends State<ToggleLy> {
   bool value = false;
   Color color = Colors.blue;
 
@@ -45,8 +45,8 @@ class _RPToggleState extends State<ToggleKit> {
       child: Switch(
         activeColor: color.withValues(alpha: widget.readOnly == true ? 0.5 : 1.0),
         activeTrackColor: color.withValues(alpha: widget.readOnly == true ? 0.2 : 0.5),
-        inactiveThumbColor: ColorsKit.darkGrey,
-        inactiveTrackColor: ColorsKit.darkGrey.withValues(alpha: 0.5),
+        inactiveThumbColor: ColorsLy.darkGrey,
+        inactiveTrackColor: ColorsLy.darkGrey.withValues(alpha: 0.5),
         trackOutlineColor: WidgetStateColor.resolveWith((states) {
           return Colors.transparent;
         }),

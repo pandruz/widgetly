@@ -1,14 +1,14 @@
 import 'dart:io';
-import 'package:flutkit/src/extensions/colors_extensions.dart';
-import 'package:flutkit/src/gesture_detector/view/gesture_detector.dart';
+import 'package:widgetly/src/extensions/colors_extensions.dart';
+import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:flutkit/src/localization/localization.dart';
+import 'package:widgetly/src/localization/localization.dart';
 
-class TextFieldKit extends StatefulWidget {
-  const TextFieldKit({
+class TextFieldLy extends StatefulWidget {
+  const TextFieldLy({
     super.key,
     this.label,
     this.hintText,
@@ -46,17 +46,17 @@ class TextFieldKit extends StatefulWidget {
   final TextAlignVertical? textAlignVertical;
 
   @override
-  State<TextFieldKit> createState() => _TextFieldKitState();
+  State<TextFieldLy> createState() => _TextFieldLyState();
 }
 
-class _TextFieldKitState extends State<TextFieldKit> {
+class _TextFieldLyState extends State<TextFieldLy> {
   TextEditingController controller = TextEditingController();
   FocusNode focusNode = FocusNode();
   Color mainColor = Colors.blue;
 
   @override
   void initState() {
-    LocalizationKit.instance.setLocale(Platform.localeName.isNotEmpty ? Platform.localeName.substring(0, Platform.localeName.indexOf('_')) : 'en');
+    LocalizationLy.instance.setLocale(Platform.localeName.isNotEmpty ? Platform.localeName.substring(0, Platform.localeName.indexOf('_')) : 'en');
     controller = TextEditingController(text: widget.initialValue == null ? null : '${widget.initialValue}');
     if (widget.mainColor != null) {
       mainColor = widget.mainColor!;
@@ -104,7 +104,7 @@ class _TextFieldKitState extends State<TextFieldKit> {
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: GestureDetectorKit(
+            child: GestureDetectorLy(
               onTap: () {
                 if (widget.updateValue != null) {
                   widget.updateValue!('');
@@ -119,7 +119,7 @@ class _TextFieldKitState extends State<TextFieldKit> {
           if (widget.obscureText != null)
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: GestureDetectorKit(
+              child: GestureDetectorLy(
                 onTap: () {
                   widget.obscureTextFunction!();
                 },
@@ -141,7 +141,7 @@ class _TextFieldKitState extends State<TextFieldKit> {
           fit: BoxFit.scaleDown,
           child: Text(
             widget.descriptionLowercased == true ? widget.label! : widget.label!.toUpperCase(),
-            style: TextStyle(color: ColorsKit.darkGrey, fontSize: 14),
+            style: TextStyle(color: ColorsLy.darkGrey, fontSize: 14),
             maxLines: 1,
           ),
         ),
@@ -161,11 +161,11 @@ class _TextFieldKitState extends State<TextFieldKit> {
                   displayArrows: false,
                   toolbarButtons: [
                     (node) {
-                      return GestureDetectorKit(
+                      return GestureDetectorLy(
                         onTap: () {
                           node.unfocus();
                         },
-                        child: Padding(padding: const EdgeInsets.all(10), child: Text(LocalizationKit.instance.translate('Close'))),
+                        child: Padding(padding: const EdgeInsets.all(10), child: Text(LocalizationLy.instance.translate('Close'))),
                       );
                     },
                   ],
@@ -189,11 +189,11 @@ class _TextFieldKitState extends State<TextFieldKit> {
       isDense: true,
       filled: true,
       hintText: widget.hintText,
-      hintStyle: TextStyle(color: ColorsKit.darkGrey, fontSize: 20),
+      hintStyle: TextStyle(color: ColorsLy.darkGrey, fontSize: 20),
       fillColor: Colors.white,
       focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: mainColor, width: 2), borderRadius: BorderRadius.circular(10)),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: widget.readOnly == true ? Colors.transparent : ColorsKit.darkGrey, width: 1.5),
+        borderSide: BorderSide(color: widget.readOnly == true ? Colors.transparent : ColorsLy.darkGrey, width: 1.5),
         borderRadius: BorderRadius.circular(10),
       ),
     );
@@ -229,7 +229,7 @@ class _TextFieldKitState extends State<TextFieldKit> {
             widget.submitAction!(value);
           }
         },
-        style: TextStyle(fontSize: 24, color: widget.readOnly == true ? ColorsKit.darkGrey : Colors.black),
+        style: TextStyle(fontSize: 24, color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black),
         textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.top,
         decoration: buildDecoration(),
       ),

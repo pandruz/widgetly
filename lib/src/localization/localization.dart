@@ -1,8 +1,8 @@
-class LocalizationKit {
-  static LocalizationKit? _instance;
+class LocalizationLy {
+  static LocalizationLy? _instance;
 
-  static LocalizationKit get instance {
-    _instance ??= LocalizationKit();
+  static LocalizationLy get instance {
+    _instance ??= LocalizationLy();
     return _instance!;
   }
 

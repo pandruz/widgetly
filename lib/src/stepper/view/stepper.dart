@@ -1,10 +1,10 @@
-import 'package:flutkit/src/extensions/colors_extensions.dart';
-import 'package:flutkit/src/gesture_detector/view/gesture_detector.dart';
+import 'package:widgetly/src/extensions/colors_extensions.dart';
+import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class StepperKit extends StatelessWidget {
-  const StepperKit({
+class StepperLy extends StatelessWidget {
+  const StepperLy({
     super.key,
     required this.mainColor,
     required this.quantity,
@@ -39,7 +39,7 @@ class StepperKit extends StatelessWidget {
   Widget buildQuantityButton(BuildContext context, {required bool decrement}) {
     return Expanded(
       flex: 2,
-      child: GestureDetectorKit(
+      child: GestureDetectorLy(
         onTap: () {
           if (decrement == false) {
             if (qtyLimit != null && quantity < qtyLimit!) {
@@ -98,7 +98,7 @@ class StepperKit extends StatelessWidget {
   Widget buildText(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height / 16,
-      decoration: BoxDecoration(color: Colors.white, border: Border.all(color: ColorsKit.darkGrey, width: 2)),
+      decoration: BoxDecoration(color: Colors.white, border: Border.all(color: ColorsLy.darkGrey, width: 2)),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(4, 2, 4, 2),
         child: FittedBox(
@@ -117,7 +117,7 @@ class StepperKit extends StatelessWidget {
         padding: const EdgeInsets.only(right: 5),
         child: Text(
           description!.toUpperCase(),
-          style: TextStyle(color: ColorsKit.darkGrey, fontSize: 14),
+          style: TextStyle(color: ColorsLy.darkGrey, fontSize: 14),
           maxLines: descriptionMaxLines ?? 1,
           overflow: TextOverflow.ellipsis,
         ),

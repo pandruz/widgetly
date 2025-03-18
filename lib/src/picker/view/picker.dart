@@ -1,12 +1,12 @@
-import 'package:flutkit/src/extensions/colors_extensions.dart';
-import 'package:flutkit/src/gesture_detector/view/gesture_detector.dart';
-import 'package:flutkit/src/modal/modal_repository.dart';
-import 'package:flutkit/src/picker/view/item_selector.dart';
+import 'package:widgetly/src/extensions/colors_extensions.dart';
+import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
+import 'package:widgetly/src/modal/modal_repository.dart';
+import 'package:widgetly/src/picker/view/item_selector.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class PickerKit extends StatefulWidget {
-  PickerKit({
+class PickerLy extends StatefulWidget {
+  PickerLy({
     super.key,
     this.label,
     this.modalTitle,
@@ -29,10 +29,10 @@ class PickerKit extends StatefulWidget {
   dynamic selectedValue;
 
   @override
-  State<PickerKit> createState() => _CustomPickerState();
+  State<PickerLy> createState() => _CustomPickerState();
 }
 
-class _CustomPickerState extends State<PickerKit> {
+class _CustomPickerState extends State<PickerLy> {
   bool showList = false;
 
   @override
@@ -65,7 +65,7 @@ class _CustomPickerState extends State<PickerKit> {
         padding: const EdgeInsets.only(right: 10),
         child: Text(
           widget.label!.toUpperCase(),
-          style: TextStyle(color: ColorsKit.darkGrey, fontSize: 14),
+          style: TextStyle(color: ColorsLy.darkGrey, fontSize: 14),
           maxLines: widget.labelMaxLines ?? 1,
           overflow: TextOverflow.ellipsis,
         ),
@@ -75,12 +75,12 @@ class _CustomPickerState extends State<PickerKit> {
 
   Widget buildPicker(BuildContext context) {
     return Expanded(
-      child: GestureDetectorKit(
+      child: GestureDetectorLy(
         onTap: () {
           ModalRepository.shared.showBottomSheet(
             context: context,
             mainColor: widget.mainColor,
-            bottomSheet: ItemSelectorKit(
+            bottomSheet: ItemSelectorLy(
               label: widget.label,
               selectedValue: widget.selectedValue,
               values: widget.values,
@@ -94,7 +94,7 @@ class _CustomPickerState extends State<PickerKit> {
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: ColorsKit.darkGrey, width: 1.5),
+            border: Border.all(color: ColorsLy.darkGrey, width: 1.5),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(
@@ -127,7 +127,7 @@ class _CustomPickerState extends State<PickerKit> {
   Widget buildDelete() {
     return Padding(
       padding: const EdgeInsets.only(left: 10),
-      child: GestureDetectorKit(
+      child: GestureDetectorLy(
         onTap: () async {
           if (widget.deleteAction != null) {
             await widget.deleteAction!();

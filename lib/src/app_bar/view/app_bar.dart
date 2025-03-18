@@ -1,9 +1,9 @@
-import 'package:flutkit/src/gesture_detector/view/gesture_detector.dart';
-import 'package:flutkit/src/extensions/iterable_extensions.dart';
+import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
+import 'package:widgetly/src/extensions/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 
-class AppBarKit extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarKit({
+class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
+  const AppBarLy({
     super.key,
     this.title,
     this.titleWidget,
@@ -51,7 +51,7 @@ class AppBarKit extends StatelessWidget implements PreferredSizeWidget {
         ? leadingWidget!
         : backAction == null
         ? SizedBox(height: MediaQuery.of(context).size.width * 0.06, width: MediaQuery.of(context).size.height * 0.06)
-        : GestureDetectorKit(
+        : GestureDetectorLy(
           onTap: () {
             if ((isLoading ?? false) == false) {
               FocusManager.instance.primaryFocus?.unfocus();

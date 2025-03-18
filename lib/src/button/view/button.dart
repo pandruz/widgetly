@@ -1,8 +1,8 @@
-import 'package:flutkit/src/gesture_detector/view/gesture_detector.dart';
+import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/material.dart';
 
-class ButtonKit extends StatelessWidget {
-  const ButtonKit({super.key, required this.label, required this.mainColor, this.buttonFunc, this.showOutline, this.isLoading});
+class ButtonLy extends StatelessWidget {
+  const ButtonLy({super.key, required this.label, required this.mainColor, this.buttonFunc, this.showOutline, this.isLoading});
 
   final String label;
   final Color mainColor;
@@ -12,7 +12,7 @@ class ButtonKit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetectorKit(
+    return GestureDetectorLy(
       onTap: () {
         if (buttonFunc != null) {
           buttonFunc!();
