@@ -1,3 +1,7 @@
+## 0.0.8
+
+- Added icon to ButtonLy + Fixed locale crash on Flutter web
+
 ## 0.0.7
 
 - Code cleaning

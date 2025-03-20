@@ -171,6 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
               label: 'LOAD DATA',
               mainColor: Colors.blue,
               isLoading: _isLoading,
+              icon: Icons.download,
               buttonFunc: () {
                 setState(() => _isLoading = true);
                 Future.delayed(const Duration(seconds: 2), () {

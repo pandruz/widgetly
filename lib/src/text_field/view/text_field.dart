@@ -106,11 +106,16 @@ class _TextFieldLyState extends State<TextFieldLy> {
 
   @override
   void initState() {
-    LocalizationLy.instance.setLocale(
-      Platform.localeName.isNotEmpty
-          ? Platform.localeName.substring(0, Platform.localeName.indexOf('_'))
-          : 'en',
-    );
+    String locale = '';
+    try {
+      locale = Platform.localeName.substring(
+        0,
+        Platform.localeName.indexOf('_'),
+      );
+    } catch (e) {
+      //
+    }
+    LocalizationLy.instance.setLocale(locale.isEmpty ? 'en' : locale);
     controller = TextEditingController(
       text: widget.initialValue == null ? null : '${widget.initialValue}',
     );
