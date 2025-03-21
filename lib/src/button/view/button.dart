@@ -16,7 +16,16 @@ class ButtonLy extends StatelessWidget {
   /// The [buttonFunc] is called when the button is tapped.
   /// If [showOutline] is true, the button will have an outlined style.
   /// If [isLoading] is true, the button will display a loading indicator.
-  const ButtonLy({super.key, required this.label, this.mainColor, this.textColor, this.buttonFunc, this.showOutline, this.isLoading, this.icon});
+  const ButtonLy({
+    super.key,
+    required this.label,
+    this.mainColor,
+    this.textColor,
+    this.buttonFunc,
+    this.showOutline,
+    this.isLoading,
+    this.icon,
+  });
 
   /// The text displayed on the button.
   /// Will be displayed in uppercase if the button is actionable.
@@ -62,7 +71,9 @@ class ButtonLy extends StatelessWidget {
         decoration: buildDecoration(color),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Center(child: isLoading == true ? buildLoading(color) : buildButton(color)),
+          child: Center(
+            child: isLoading == true ? buildLoading(color) : buildButton(color),
+          ),
         ),
       ),
     );
@@ -86,8 +97,17 @@ class ButtonLy extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (icon != null) Padding(padding: const EdgeInsets.only(right: 10), child: Icon(icon, color: itemsColor, size: 26)),
-            TextLy(buttonFunc != null ? label.toUpperCase() : label, color: itemsColor, fontSize: 26, fontWeight: FontWeight.w500),
+            if (icon != null)
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Icon(icon, color: itemsColor, size: 26),
+              ),
+            TextLy(
+              buttonFunc != null ? label.toUpperCase() : label,
+              color: itemsColor,
+              fontSize: 26,
+              fontWeight: FontWeight.w500,
+            ),
           ],
         ),
       ),
@@ -95,7 +115,13 @@ class ButtonLy extends StatelessWidget {
   }
 
   Widget buildLoading(Color color) {
-    return SizedBox(height: 25, width: 25, child: CircularProgressIndicator(color: color == Colors.white ? Colors.black : Colors.white));
+    return SizedBox(
+      height: 25,
+      width: 25,
+      child: CircularProgressIndicator(
+        color: color == Colors.white ? Colors.black : Colors.white,
+      ),
+    );
   }
 
   BoxDecoration buildDecoration(Color color) {

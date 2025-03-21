@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgetly/src/text/view/text.dart';
 import 'package:widgetly/widgetly.dart';
 
 void main() {
@@ -41,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _stepperValue = 1;
   String? _selectedItem;
   bool _isLoading = false;
+  String _selectedOption = 'Option 1';
 
   // Sample data for picker
   final List<String> _items = [
@@ -50,6 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
     'Date',
     'Elderberry',
   ];
+  // Sample options for RadioLy
+  final List<String> _radioOptions = ['Option 1', 'Option 2', 'Option 3'];
 
   @override
   void initState() {
@@ -125,7 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
             StepperLy(
               mainColor: WidgetlyConfig().mainColor,
               quantity: _stepperValue,
-              updateQuantity: (value) => setState(() => _stepperValue = value),
+              updateQuantity:
+                  (value) => setState(() => _stepperValue = value.toInt()),
               qtyLimit: 10,
               description: 'QUANTITY',
             ),
@@ -195,6 +200,128 @@ class _HomeScreenState extends State<HomeScreen> {
               value:
                   'This is a showcase of all the components available in the Widgetly package. Each component is designed to be customizable and easy to use.',
               maxLines: 3,
+            ),
+            const SizedBox(height: 24),
+
+            // RadioLy example
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextLy(
+                  'SELECTED OPTION: $_selectedOption',
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+                const SizedBox(height: 8),
+                ...List.generate(_radioOptions.length, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: RadioLy(
+                      buttons: _radioOptions,
+                      selected: index,
+                      update:
+                          (value) => setState(
+                            () => _selectedOption = _radioOptions[value],
+                          ),
+                      mainColor: WidgetlyConfig().mainColor,
+                    ),
+                  );
+                }),
+              ],
+            ),
+            const SizedBox(height: 24),
+
+            // CupertinoBoxLy example
+            const TextLy(
+              'CUPERTINO BOX',
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+            const SizedBox(height: 8),
+            Column(
+              children: [
+                CupertinoBoxLy(
+                  isFirst: true,
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: TextLy('First Item in List', fontSize: 16),
+                  ),
+                ),
+                CupertinoBoxLy(
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: TextLy('Middle Item in List', fontSize: 16),
+                  ),
+                ),
+                CupertinoBoxLy(
+                  isLast: true,
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: TextLy('Last Item in List', fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+
+            // CupertinoExpandableBoxLy example
+            const TextLy(
+              'CUPERTINO EXPANDABLE BOX',
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+            const SizedBox(height: 8),
+            CupertinoExpandableBoxLy(
+              title: 'Tap to Expand/Collapse',
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextLy('This is expandable content', fontSize: 16),
+                    const SizedBox(height: 8),
+                    TextLy(
+                      'You can add any widgets here that will be shown or hidden when the user taps the header.',
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            // Example of multiple expandable boxes in a group
+            const TextLy(
+              'GROUPED EXPANDABLE BOXES',
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+            const SizedBox(height: 8),
+            Column(
+              children: [
+                CupertinoExpandableBoxLy(
+                  title: 'Section 1',
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: TextLy('Content for Section 1', fontSize: 16),
+                  ),
+                ),
+                CupertinoExpandableBoxLy(
+                  title: 'Section 2',
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: TextLy('Content for Section 2', fontSize: 16),
+                  ),
+                ),
+                CupertinoExpandableBoxLy(
+                  title: 'Section 3',
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: TextLy('Content for Section 3', fontSize: 16),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
           ],

@@ -1,8 +1,8 @@
 import 'package:widgetly/src/extensions/colors_extensions.dart';
-import 'package:widgetly/src/gesture_detector/view/gesture_detector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetly/src/text/view/text.dart';
+import 'package:widgetly/widgetly.dart';
 
 /// A customizable stepper widget for incrementing and decrementing values.
 ///
@@ -20,27 +20,27 @@ class StepperLy extends StatelessWidget {
   /// The [descriptionMaxLines] controls how many lines the description can span.
   const StepperLy({
     super.key,
-    required this.mainColor,
     required this.quantity,
     required this.updateQuantity,
+    this.mainColor,
     this.qtyLimit,
     this.description,
     this.outlined,
     this.descriptionMaxLines,
   });
 
-  /// The primary color used for the stepper buttons.
-  final Color mainColor;
-
   /// The current quantity value displayed in the stepper.
-  final int quantity;
+  final num quantity;
 
   /// Callback function triggered when the quantity changes.
-  final Function(int) updateQuantity;
+  final Function(num) updateQuantity;
+
+  /// The primary color used for the stepper buttons.
+  final Color? mainColor;
 
   /// Optional upper limit for the quantity value.
   /// If provided, the value cannot exceed this limit.
-  final int? qtyLimit;
+  final num? qtyLimit;
 
   /// Optional description label displayed alongside the stepper.
   /// Will be displayed in uppercase.
@@ -56,18 +56,23 @@ class StepperLy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color color = mainColor ?? WidgetlyConfig().mainColor;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         if (description != null) buildDescription(context),
-        buildQuantityButton(context, decrement: true),
+        buildQuantityButton(context, decrement: true, color: color),
         Expanded(flex: 3, child: buildText(context)),
-        buildQuantityButton(context, decrement: false),
+        buildQuantityButton(context, decrement: false, color: color),
       ],
     );
   }
 
-  Widget buildQuantityButton(BuildContext context, {required bool decrement}) {
+  Widget buildQuantityButton(
+    BuildContext context, {
+    required bool decrement,
+    required Color color,
+  }) {
     return Expanded(
       flex: 2,
       child: GestureDetectorLy(
@@ -95,12 +100,22 @@ class StepperLy extends StatelessWidget {
             }
           }
         },
-        child: buildButton(context, decrement ? 0 : qtyLimit, !decrement),
+        child: buildButton(
+          context,
+          decrement ? 0 : qtyLimit,
+          !decrement,
+          color,
+        ),
       ),
     );
   }
 
-  Widget buildButton(BuildContext context, int? limit, bool isAddButton) {
+  Widget buildButton(
+    BuildContext context,
+    num? limit,
+    bool isAddButton,
+    Color color,
+  ) {
     final width =
         (MediaQuery.of(context).size.width / (kIsWeb == true ? 10 : 1.9)) / 3;
     final height = MediaQuery.of(context).size.height / 16;
@@ -108,10 +123,10 @@ class StepperLy extends StatelessWidget {
     final buttonColor =
         outlined == true
             ? Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0)
-            : mainColor.withValues(alpha: isDisabled ? 0.3 : 1.0);
+            : color.withValues(alpha: isDisabled ? 0.3 : 1.0);
     final textColor =
         outlined == true
-            ? mainColor.withValues(alpha: isDisabled ? 0.3 : 1.0)
+            ? color.withValues(alpha: isDisabled ? 0.3 : 1.0)
             : Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0);
     return Container(
       width: width,
@@ -129,7 +144,7 @@ class StepperLy extends StatelessWidget {
           width: 2.5,
           color:
               outlined == true
-                  ? (isDisabled ? mainColor.withValues(alpha: 0.3) : mainColor)
+                  ? (isDisabled ? color.withValues(alpha: 0.3) : color)
                   : Colors.transparent,
         ),
       ),

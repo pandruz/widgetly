@@ -9,29 +9,29 @@ import 'package:widgetly/widgetly.dart';
 class ToggleLy extends StatefulWidget {
   /// Creates a toggle switch with a description label.
   ///
-  /// The [description] parameter is required and appears next to the toggle.
   /// The [updateFunc] is called when the toggle value changes.
   /// The [toggleValue] represents the initial state of the toggle.
+  /// The [description] parameter is required and appears next to the toggle.
   /// If [readOnly] is true, the toggle cannot be interacted with.
   /// The [mainColor] specifies the primary color of the toggle when active.
   const ToggleLy({
     super.key,
-    required this.description,
     required this.updateFunc,
     required this.toggleValue,
+    this.description,
     this.readOnly,
     this.mainColor,
   });
-
-  /// The label text displayed next to the toggle.
-  /// Will be displayed in uppercase.
-  final String description;
 
   /// Callback function triggered when the toggle value changes.
   final Function(bool value) updateFunc;
 
   /// The initial state of the toggle.
   final bool toggleValue;
+
+  /// The label text displayed next to the toggle.
+  /// Will be displayed in uppercase.
+  final String? description;
 
   /// When true, the toggle cannot be interacted with.
   /// Defaults to false if not specified.
@@ -64,14 +64,17 @@ class _RPToggleState extends State<ToggleLy> {
       height: MediaQuery.of(context).size.height / 20,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [buildDescription(), buildSwitch(context, color)],
+        children: [
+          if ((widget.description ?? '').isNotEmpty) buildDescription(),
+          buildSwitch(context, color),
+        ],
       ),
     );
   }
 
   Widget buildDescription() {
     return Expanded(
-      child: TextLy(widget.description.toUpperCase(), fontSize: 14),
+      child: TextLy(widget.description!.toUpperCase(), fontSize: 14),
     );
   }
 

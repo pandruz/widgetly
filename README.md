@@ -12,7 +12,7 @@ To use this package, add `widgetly` as a dependency in your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  widgetly: ^0.0.3
+  widgetly: ^latest_version
 ```
 
 ## Configuration
@@ -70,15 +70,17 @@ AppBarLy(
 
 ### ButtonLy
 
-A versatile button component with support for outlined and filled styles, loading states, and customizable colors.
+A versatile button component with support for outlined and filled styles, loading states, icons, and customizable colors.
 
 ```dart
 ButtonLy(
   label: 'SUBMIT',
   mainColor: Colors.blue,
+  textColor: Colors.white, // Custom text color
   buttonFunc: () => handleSubmit(),
   showOutline: true,
   isLoading: false,
+  icon: Icons.send, // Optional icon
 )
 ```
 
@@ -87,6 +89,8 @@ ButtonLy(
 - Primary and outline styles
 - Loading state with automatic spinner
 - Uppercase text transformation
+- Optional leading icon
+- Custom text color support
 - Consistent border radius and padding
 
 ### GestureDetectorLy
@@ -211,6 +215,14 @@ TextFieldLy(
   updateValue: (value) => setState(() => email = value),
   keyboardType: TextInputType.emailAddress,
   textInputAction: TextInputAction.next,
+  textEditingController: myController, // Optional controller
+  obscureText: true, // For password fields
+  obscureTextFunction: () => togglePasswordVisibility(), // Toggle password visibility
+  readOnly: false,
+  submitAction: (value) => submitForm(),
+  textCapitalization: true,
+  height: 60,
+  textAlignVertical: TextAlignVertical.center,
 )
 ```
 
@@ -219,10 +231,12 @@ TextFieldLy(
 - Optional label
 - Clear button when text is present
 - Password visibility toggle
-- Custom keyboard types
+- Custom keyboard types and actions
 - Read-only mode
-- Customizable colors and heights
+- Controller support
 - Form submission handler
+- Customizable height and text alignment
+- Text capitalization options
 
 ### ToggleLy
 
@@ -245,6 +259,105 @@ ToggleLy(
 - Optional read-only mode
 - Customizable colors
 - Compact design with proper spacing
+
+### RadioLy
+
+A customizable radio button group widget with support for text or icon options.
+
+```dart
+RadioLy(
+  buttons: ['Option 1', 'Option 2', 'Option 3'],
+  selected: 0,
+  update: (value) => setState(() => selectedOption = options[value]),
+  mainColor: Colors.purple,
+  buttonIcons: [Icons.home, Icons.favorite, Icons.settings], // Optional
+)
+```
+
+**Key Features:**
+
+- Horizontal radio button layout
+- Support for both text and icon labels
+- Single selection with clear visual feedback
+- Customizable colors
+- Automatic border radius handling for first/last items
+- Consistent styling with the rest of the library
+
+### CupertinoBoxLy
+
+A stylized container widget that mimics iOS-style UI elements for consistent Cupertino design.
+
+```dart
+// For a single box
+CupertinoBoxLy(
+  isFirst: true,
+  isLast: true,
+  child: Padding(
+    padding: EdgeInsets.all(16.0),
+    child: Text('Single Item'),
+  ),
+)
+
+// For a list of boxes
+Column(
+  children: [
+    CupertinoBoxLy(
+      isFirst: true,
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text('First Item'),
+      ),
+    ),
+    CupertinoBoxLy(
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text('Middle Item'),
+      ),
+    ),
+    CupertinoBoxLy(
+      isLast: true,
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text('Last Item'),
+      ),
+    ),
+  ],
+)
+```
+
+**Key Features:**
+
+- iOS-style container styling
+- Proper border radius for items in a list (first and last items)
+- Automatic borders between adjacent items
+- Adaptive background color based on platform brightness
+- Simplified creation of Cupertino-styled list groups
+- Consistent with iOS design guidelines
+
+### CupertinoExpandableBoxLy
+
+A customizable expandable box widget with Cupertino styling.
+
+```dart
+CupertinoExpandableBoxLy(
+  title: 'Expandable Box',
+  child: Padding(
+    padding: EdgeInsets.all(16.0),
+    child: Text('Expandable Content'),
+  ),
+  onExpand: () => print('Expanded'),
+  mainColor: Colors.blue,
+)
+```
+
+**Key Features:**
+
+- Collapsible container with a title bar
+- Tap to expand or collapse the content
+- Indicator icon changes based on the expanded state
+- Customizable accent color
+- Optional callback for expansion state changes
+- Consistent Cupertino styling
 
 ## Utilities
 

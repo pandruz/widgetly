@@ -1,3 +1,9 @@
+## 0.0.10
+
+- Added new widgets: RadioLy CupertinoBoxLy and CupertinoExpandableBoxLy
+- Fixed some properties and added others to StepperLy and ToggeLy
+- New colors and color methods
+
 ## 0.0.9
 
 - Added textColor property to ButtonLy

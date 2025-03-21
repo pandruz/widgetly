@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 extension HexColor on Color {
   static Color fromHex(String hexString) {
@@ -18,4 +18,11 @@ extension HexColor on Color {
 
 extension ColorsLy on Color {
   static final darkGrey = HexColor.fromHex('7D7D7D');
+  static final lightGrey = HexColor.fromHex('A3A3A3');
+}
+
+extension ColorMethodsLy on Color {
+  static Color white({Brightness? brightness}) {
+    return brightness == Brightness.dark ? Colors.black : Colors.white;
+  }
 }
