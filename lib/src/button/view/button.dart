@@ -12,18 +12,11 @@ class ButtonLy extends StatelessWidget {
   ///
   /// The [label] is displayed as the button text.
   /// The [mainColor] defines the primary color of the button.
+  /// The [textColor] defines the color of the text and the icon.
   /// The [buttonFunc] is called when the button is tapped.
   /// If [showOutline] is true, the button will have an outlined style.
   /// If [isLoading] is true, the button will display a loading indicator.
-  const ButtonLy({
-    super.key,
-    required this.label,
-    this.mainColor,
-    this.buttonFunc,
-    this.showOutline,
-    this.isLoading,
-    this.icon,
-  });
+  const ButtonLy({super.key, required this.label, this.mainColor, this.textColor, this.buttonFunc, this.showOutline, this.isLoading, this.icon});
 
   /// The text displayed on the button.
   /// Will be displayed in uppercase if the button is actionable.
@@ -34,6 +27,11 @@ class ButtonLy extends StatelessWidget {
   /// and text color based on contrast. If not provided, the mainColor from
   /// the Widgetly config (or its default) will be used.
   final Color? mainColor;
+
+  /// The color that will be assigned to the text and the icon.
+  /// If not provided, black will be used (unless mainColor is set to black
+  /// and outlined is not true, in which case white will be used).
+  final Color? textColor;
 
   /// Callback function triggered when the button is tapped.
   /// If null, the button will appear disabled (but still visible).
@@ -64,18 +62,18 @@ class ButtonLy extends StatelessWidget {
         decoration: buildDecoration(color),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Center(
-            child: isLoading == true ? buildLoading(color) : buildButton(color),
-          ),
+          child: Center(child: isLoading == true ? buildLoading(color) : buildButton(color)),
         ),
       ),
     );
   }
 
   Widget buildButton(Color color) {
-    final Color textColor =
+    final Color itemsColor =
         showOutline == true
-            ? color
+            ? (textColor ?? color)
+            : textColor != null
+            ? textColor!
             : color == Colors.white
             ? Colors.black
             : Colors.white;
@@ -88,17 +86,8 @@ class ButtonLy extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (icon != null)
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Icon(icon, color: textColor, size: 26),
-              ),
-            TextLy(
-              buttonFunc != null ? label.toUpperCase() : label,
-              color: textColor,
-              fontSize: 26,
-              fontWeight: FontWeight.w500,
-            ),
+            if (icon != null) Padding(padding: const EdgeInsets.only(right: 10), child: Icon(icon, color: itemsColor, size: 26)),
+            TextLy(buttonFunc != null ? label.toUpperCase() : label, color: itemsColor, fontSize: 26, fontWeight: FontWeight.w500),
           ],
         ),
       ),
@@ -106,13 +95,7 @@ class ButtonLy extends StatelessWidget {
   }
 
   Widget buildLoading(Color color) {
-    return SizedBox(
-      height: 25,
-      width: 25,
-      child: CircularProgressIndicator(
-        color: color == Colors.white ? Colors.black : Colors.white,
-      ),
-    );
+    return SizedBox(height: 25, width: 25, child: CircularProgressIndicator(color: color == Colors.white ? Colors.black : Colors.white));
   }
 
   BoxDecoration buildDecoration(Color color) {
