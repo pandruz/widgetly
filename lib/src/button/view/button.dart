@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:widgetly/src/text/view/text.dart';
 import 'package:widgetly/widgetly.dart';
 
 /// A customizable button widget with different states and styling options.

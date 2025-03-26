@@ -1,7 +1,6 @@
 import 'package:widgetly/src/extensions/colors_extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:widgetly/src/text/view/text.dart';
 import 'package:widgetly/widgetly.dart';
 
 /// A customizable stepper widget for incrementing and decrementing values.

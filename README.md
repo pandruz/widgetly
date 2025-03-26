@@ -212,6 +212,7 @@ TextFieldLy(
   label: 'EMAIL',
   hintText: 'Enter your email',
   initialValue: email,
+  maxLines: 5, // Comes with limitations, read the description for more details
   updateValue: (value) => setState(() => email = value),
   keyboardType: TextInputType.emailAddress,
   textInputAction: TextInputAction.next,
@@ -358,6 +359,36 @@ CupertinoExpandableBoxLy(
 - Customizable accent color
 - Optional callback for expansion state changes
 - Consistent Cupertino styling
+
+### TextLy
+
+A simple text widget that provides consistent styling and customization options across your application.
+
+```dart
+TextLy(
+  'Hello World',
+  color: Colors.blue,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  fontFamily: 'Roboto',
+  italic: true,
+  height: 1.5,
+  maxLines: 2,
+  overflow: TextOverflow.ellipsis,
+  textAlign: TextAlign.center,
+)
+```
+
+**Key Features:**
+
+- Consistent text styling
+- Support for custom colors and font sizes
+- Optional font weight and family
+- Italic text support
+- Line height customization
+- Text overflow handling
+- Text alignment options
+- Automatic font family inheritance from WidgetlyConfig
 
 ## Utilities
 

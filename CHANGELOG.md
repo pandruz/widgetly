@@ -1,3 +1,8 @@
+## 0.0.11
+
+- New TextLy widget
+- Added maxLines property to TextFieldLy and set all its limitations
+
 ## 0.0.10
 
 - Added new widgets: RadioLy CupertinoBoxLy and CupertinoExpandableBoxLy
