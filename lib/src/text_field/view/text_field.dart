@@ -117,12 +117,17 @@ class _TextFieldLyState extends State<TextFieldLy> {
   void initState() {
     String locale = '';
     try {
-      locale = Platform.localeName.substring(0, Platform.localeName.indexOf('_'));
+      locale = Platform.localeName.substring(
+        0,
+        Platform.localeName.indexOf('_'),
+      );
     } catch (e) {
       //
     }
     LocalizationLy.instance.setLocale(locale.isEmpty ? 'en' : locale);
-    controller = TextEditingController(text: widget.initialValue == null ? null : '${widget.initialValue}');
+    controller = TextEditingController(
+      text: widget.initialValue == null ? null : '${widget.initialValue}',
+    );
     if (widget.mainColor != null) {
       mainColor = widget.mainColor!;
     }
@@ -131,12 +136,18 @@ class _TextFieldLyState extends State<TextFieldLy> {
 
   @override
   Widget build(BuildContext context) {
-    (widget.textEditingController ?? controller).selection = TextSelection.fromPosition(
-      TextPosition(offset: (widget.textEditingController ?? controller).text.length),
+    (widget.textEditingController ?? controller)
+        .selection = TextSelection.fromPosition(
+      TextPosition(
+        offset: (widget.textEditingController ?? controller).text.length,
+      ),
     );
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: (widget.maxLines ?? 0) > 1 ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+      crossAxisAlignment:
+          (widget.maxLines ?? 0) > 1
+              ? CrossAxisAlignment.start
+              : CrossAxisAlignment.center,
       children: [
         if (widget.label != null) buildLabel(),
         Expanded(
@@ -148,11 +159,19 @@ class _TextFieldLyState extends State<TextFieldLy> {
                     : kIsWeb == true
                     ? 3
                     : 1.9),
-            height: widget.height ?? ((widget.maxLines ?? 0) > 1 ? (40 * widget.maxLines!).toDouble() : 55),
+            height:
+                widget.height ??
+                ((widget.maxLines ?? 0) > 1
+                    ? (40 * widget.maxLines!).toDouble()
+                    : 55),
             child: Stack(
               children: [
                 buildActionsWithTF(),
-                if ((widget.textEditingController ?? controller).text.isNotEmpty && widget.readOnly != true) buildButtons(),
+                if ((widget.textEditingController ?? controller)
+                        .text
+                        .isNotEmpty &&
+                    widget.readOnly != true)
+                  buildButtons(),
               ],
             ),
           ),
@@ -168,7 +187,10 @@ class _TextFieldLyState extends State<TextFieldLy> {
         height: (widget.height ?? 55) - 6,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: (widget.maxLines ?? 0) > 1 ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+          crossAxisAlignment:
+              (widget.maxLines ?? 0) > 1
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 10),
@@ -191,7 +213,12 @@ class _TextFieldLyState extends State<TextFieldLy> {
                   onTap: () {
                     widget.obscureTextFunction!();
                   },
-                  child: Icon(widget.obscureText == false ? CupertinoIcons.eye : CupertinoIcons.eye_slash, color: mainColor),
+                  child: Icon(
+                    widget.obscureText == false
+                        ? CupertinoIcons.eye
+                        : CupertinoIcons.eye_slash,
+                    color: mainColor,
+                  ),
                 ),
               ),
           ],
@@ -204,12 +231,17 @@ class _TextFieldLyState extends State<TextFieldLy> {
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       child: SizedBox(
-        width: kIsWeb == true ? (MediaQuery.of(context).size.width * 2 / 3) / 3.5 : MediaQuery.of(context).size.width / 3.8,
+        width:
+            kIsWeb == true
+                ? (MediaQuery.of(context).size.width * 2 / 3) / 3.5
+                : MediaQuery.of(context).size.width / 3.8,
         child: FittedBox(
           alignment: Alignment.centerLeft,
           fit: BoxFit.scaleDown,
           child: TextLy(
-            widget.descriptionLowercased == true ? widget.label! : widget.label!.toUpperCase(),
+            widget.descriptionLowercased == true
+                ? widget.label!
+                : widget.label!.toUpperCase(),
             color: ColorsLy.darkGrey,
             fontSize: 14,
             maxLines: 1,
@@ -235,7 +267,12 @@ class _TextFieldLyState extends State<TextFieldLy> {
                         onTap: () {
                           node.unfocus();
                         },
-                        child: Padding(padding: const EdgeInsets.all(10), child: TextLy(LocalizationLy.instance.translate('Close'))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: TextLy(
+                            LocalizationLy.instance.translate('Close'),
+                          ),
+                        ),
                       );
                     },
                   ],
@@ -252,7 +289,10 @@ class _TextFieldLyState extends State<TextFieldLy> {
         top: 8,
         right:
             10 +
-            ((widget.textEditingController ?? controller).text.isNotEmpty && widget.readOnly != true ? 28 : 0) +
+            ((widget.textEditingController ?? controller).text.isNotEmpty &&
+                    widget.readOnly != true
+                ? 28
+                : 0) +
             (widget.obscureText != null ? 36 : 0),
         bottom: 8,
       ),
@@ -261,23 +301,37 @@ class _TextFieldLyState extends State<TextFieldLy> {
       hintText: widget.hintText,
       hintStyle: TextStyle(color: ColorsLy.darkGrey, fontSize: 20),
       fillColor: Colors.white,
-      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: mainColor, width: 2), borderRadius: BorderRadius.circular(10)),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: mainColor, width: 2),
+        borderRadius: BorderRadius.circular(10),
+      ),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: widget.readOnly == true ? Colors.transparent : ColorsLy.darkGrey, width: 1.5),
+        borderSide: BorderSide(
+          color:
+              widget.readOnly == true ? Colors.transparent : ColorsLy.darkGrey,
+          width: 1.5,
+        ),
         borderRadius: BorderRadius.circular(10),
       ),
     );
   }
 
   Widget buildActionsWithTF() {
-    return KeyboardActions(tapOutsideBehavior: TapOutsideBehavior.opaqueDismiss, config: buildKeyboardConfig(), child: buildTextField());
+    return KeyboardActions(
+      tapOutsideBehavior: TapOutsideBehavior.opaqueDismiss,
+      config: buildKeyboardConfig(),
+      child: buildTextField(),
+    );
   }
 
   Widget buildTextField() {
     return (widget.maxLines ?? 0) > 1
         ? TextField(
           readOnly: widget.readOnly ?? false,
-          textCapitalization: widget.textCapitalization == true ? TextCapitalization.characters : TextCapitalization.none,
+          textCapitalization:
+              widget.textCapitalization == true
+                  ? TextCapitalization.characters
+                  : TextCapitalization.none,
           maxLines: widget.maxLines,
           keyboardType: TextInputType.multiline,
           focusNode: focusNode,
@@ -289,7 +343,10 @@ class _TextFieldLyState extends State<TextFieldLy> {
           onChanged: (String value) {
             setState(() {
               (widget.textEditingController ?? controller).text = value;
-              (widget.textEditingController ?? controller).selection = TextSelection.fromPosition(TextPosition(offset: value.length));
+              (widget.textEditingController ?? controller)
+                  .selection = TextSelection.fromPosition(
+                TextPosition(offset: value.length),
+              );
               if (widget.updateValue != null) {
                 widget.updateValue!(value);
               }
@@ -301,13 +358,19 @@ class _TextFieldLyState extends State<TextFieldLy> {
               widget.submitAction!(value);
             }
           },
-          style: TextStyle(fontSize: 24, color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black),
+          style: TextStyle(
+            fontSize: 24,
+            color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black,
+          ),
           textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.top,
           decoration: buildDecoration(),
         )
         : TextField(
           readOnly: widget.readOnly ?? false,
-          textCapitalization: widget.textCapitalization == true ? TextCapitalization.characters : TextCapitalization.none,
+          textCapitalization:
+              widget.textCapitalization == true
+                  ? TextCapitalization.characters
+                  : TextCapitalization.none,
           keyboardType: widget.keyboardType,
           focusNode: focusNode,
           textInputAction: widget.textInputAction,
@@ -319,7 +382,10 @@ class _TextFieldLyState extends State<TextFieldLy> {
           onChanged: (String value) {
             setState(() {
               (widget.textEditingController ?? controller).text = value;
-              (widget.textEditingController ?? controller).selection = TextSelection.fromPosition(TextPosition(offset: value.length));
+              (widget.textEditingController ?? controller)
+                  .selection = TextSelection.fromPosition(
+                TextPosition(offset: value.length),
+              );
               if (widget.updateValue != null) {
                 widget.updateValue!(value);
               }
@@ -331,7 +397,10 @@ class _TextFieldLyState extends State<TextFieldLy> {
               widget.submitAction!(value);
             }
           },
-          style: TextStyle(fontSize: 24, color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black),
+          style: TextStyle(
+            fontSize: 24,
+            color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black,
+          ),
           textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.top,
           decoration: buildDecoration(),
         );
