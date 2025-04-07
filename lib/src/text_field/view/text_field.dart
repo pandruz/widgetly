@@ -116,13 +116,15 @@ class _TextFieldLyState extends State<TextFieldLy> {
   @override
   void initState() {
     String locale = '';
-    try {
-      locale = Platform.localeName.substring(
-        0,
-        Platform.localeName.indexOf('_'),
-      );
-    } catch (e) {
-      //
+    if (!kIsWeb) {
+      try {
+        locale = Platform.localeName.substring(
+          0,
+          Platform.localeName.indexOf('_'),
+        );
+      } catch (e) {
+        //
+      }
     }
     LocalizationLy.instance.setLocale(locale.isEmpty ? 'en' : locale);
     controller = TextEditingController(

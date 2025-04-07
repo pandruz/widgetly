@@ -1,3 +1,7 @@
+## 0.0.12
+
+- Fixed Platform.localeName causing crash on flutter web
+
 ## 0.0.11
 
 - New TextLy widget
