@@ -1,3 +1,7 @@
+## 0.0.13
+
+- Added disabled property for ButtonLy
+
 ## 0.0.12
 
 - Fixed Platform.localeName causing crash on flutter web

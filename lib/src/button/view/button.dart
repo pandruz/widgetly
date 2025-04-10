@@ -23,6 +23,7 @@ class ButtonLy extends StatelessWidget {
     this.buttonFunc,
     this.showOutline,
     this.isLoading,
+    this.disabled,
     this.icon,
   });
 
@@ -53,25 +54,38 @@ class ButtonLy extends StatelessWidget {
   /// Defaults to false if not specified.
   final bool? isLoading;
 
+  /// When true, the button will be non-interactive and displayed with reduced opacity.
+  /// Defaults to false if not specified.
+  final bool? disabled;
+
   /// If set, the icon will be placed to the left of the label.
   final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
     Color color = mainColor ?? WidgetlyConfig().mainColor;
-    return GestureDetectorLy(
-      onTap: () {
-        if (buttonFunc != null) {
-          buttonFunc!();
-        }
-      },
-      child: Container(
-        height: 45,
-        decoration: buildDecoration(color),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Center(
-            child: isLoading == true ? buildLoading(color) : buildButton(color),
+    return IgnorePointer(
+      ignoring: disabled ?? false,
+      child: GestureDetectorLy(
+        onTap: () {
+          if (buttonFunc != null) {
+            buttonFunc!();
+          }
+        },
+        child: Opacity(
+          opacity: disabled == true ? 0.5 : 1,
+          child: Container(
+            height: 45,
+            decoration: buildDecoration(color),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Center(
+                child:
+                    isLoading == true
+                        ? buildLoading(color)
+                        : buildButton(color),
+              ),
+            ),
           ),
         ),
       ),
