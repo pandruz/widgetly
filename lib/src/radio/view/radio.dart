@@ -6,7 +6,7 @@ import 'package:widgetly/widgetly.dart';
 /// This widget provides a horizontal group of radio buttons with consistent styling
 /// and behavior. It supports both text and icon labels for the buttons and
 /// maintains the selected state.
-class RadioLy extends StatelessWidget {
+class RadioLy extends StatefulWidget {
   /// Creates a radio button group with the specified options.
   ///
   /// The [buttons] parameter defines the labels for each radio option.
@@ -37,12 +37,25 @@ class RadioLy extends StatelessWidget {
 
   /// Callback function triggered when a different option is selected.
   /// The function receives the index of the newly selected button.
-  final Function update;
+  final Function(int) update;
 
   /// The primary color used for the radio buttons.
   /// Affects the button border color and the background of the selected button.
   /// If not provided, the mainColor from the Widgetly config will be used.
   final Color? mainColor;
+
+  @override
+  State<RadioLy> createState() => _RadioLyState();
+}
+
+class _RadioLyState extends State<RadioLy> {
+  int selected = 0;
+
+  @override
+  void initState() {
+    selected = widget.selected;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +65,7 @@ class RadioLy extends StatelessWidget {
   /// Builds the complete radio button group
   Widget buildPicker(BuildContext context) {
     // Use provided color or fall back to global config
-    Color color = mainColor ?? WidgetlyConfig().mainColor;
+    Color color = widget.mainColor ?? WidgetlyConfig().mainColor;
 
     return Padding(
       padding: const EdgeInsets.all(10),
@@ -60,12 +73,12 @@ class RadioLy extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          for (String button in buttons)
+          for (String button in widget.buttons)
             buildPickerButton(
               context,
               button,
-              buttons.first == button, // isFirst
-              buttons.last == button, // isLast
+              widget.buttons.first == button, // isFirst
+              widget.buttons.last == button, // isLast
               color,
             ),
         ],
@@ -83,12 +96,17 @@ class RadioLy extends StatelessWidget {
   ) {
     return GestureDetectorLy(
       onTap: () {
-        update(buttons.indexOf(button));
+        final int index = widget.buttons.indexOf(button);
+        widget.update(index);
+        setState(() {
+          selected = index;
+        });
       },
       child: Container(
         decoration: BoxDecoration(
           // Selected button uses the main color as background
-          color: selected == buttons.indexOf(button) ? color : Colors.white,
+          color:
+              selected == widget.buttons.indexOf(button) ? color : Colors.white,
           border: Border.all(color: color),
           borderRadius:
               isFirst
@@ -107,11 +125,13 @@ class RadioLy extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(10),
             child:
-                button.contains(button)
+                widget.buttonIcons != null &&
+                        widget.buttons.indexOf(button) <
+                            widget.buttonIcons!.length
                     ? Icon(
-                      buttonIcons![buttons.indexOf(button)],
+                      widget.buttonIcons![widget.buttons.indexOf(button)],
                       color:
-                          selected == buttons.indexOf(button)
+                          selected == widget.buttons.indexOf(button)
                               ? Colors.white
                               : color,
                       size: 18,
@@ -119,7 +139,7 @@ class RadioLy extends StatelessWidget {
                     : TextLy(
                       button,
                       color:
-                          selected == buttons.indexOf(button)
+                          selected == widget.buttons.indexOf(button)
                               ? Colors.white
                               : color,
                     ),

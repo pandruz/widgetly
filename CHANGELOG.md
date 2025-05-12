@@ -1,3 +1,8 @@
+## 0.0.14
+
+- Fixed RadioLy widget crash
+- Made RadioLy widget a StatefullWidget
+
 ## 0.0.13
 
 - Added disabled property for ButtonLy
