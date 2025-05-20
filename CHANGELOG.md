@@ -1,3 +1,7 @@
+## 0.0.15
+
+- Added disabled property for RadioLy
+
 ## 0.0.14
 
 - Fixed RadioLy widget crash

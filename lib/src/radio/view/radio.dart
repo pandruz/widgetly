@@ -21,6 +21,7 @@ class RadioLy extends StatefulWidget {
     required this.selected,
     required this.update,
     this.mainColor,
+    this.disabled,
   });
 
   /// The list of labels for each radio button option.
@@ -43,6 +44,10 @@ class RadioLy extends StatefulWidget {
   /// Affects the button border color and the background of the selected button.
   /// If not provided, the mainColor from the Widgetly config will be used.
   final Color? mainColor;
+
+  /// When true, the radio buttons will be non-interactive and displayed with reduced opacity.
+  /// Defaults to false if not specified.
+  final bool? disabled;
 
   @override
   State<RadioLy> createState() => _RadioLyState();
@@ -67,21 +72,24 @@ class _RadioLyState extends State<RadioLy> {
     // Use provided color or fall back to global config
     Color color = widget.mainColor ?? WidgetlyConfig().mainColor;
 
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          for (String button in widget.buttons)
-            buildPickerButton(
-              context,
-              button,
-              widget.buttons.first == button, // isFirst
-              widget.buttons.last == button, // isLast
-              color,
-            ),
-        ],
+    return IgnorePointer(
+      ignoring: widget.disabled == true,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            for (String button in widget.buttons)
+              buildPickerButton(
+                context,
+                button,
+                widget.buttons.first == button, // isFirst
+                widget.buttons.last == button, // isLast
+                color,
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -102,47 +110,52 @@ class _RadioLyState extends State<RadioLy> {
           selected = index;
         });
       },
-      child: Container(
-        decoration: BoxDecoration(
-          // Selected button uses the main color as background
-          color:
-              selected == widget.buttons.indexOf(button) ? color : Colors.white,
-          border: Border.all(color: color),
-          borderRadius:
-              isFirst
-                  ? const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                  )
-                  : isLast
-                  ? const BorderRadius.only(
-                    topRight: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
-                  )
-                  : null,
-        ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child:
-                widget.buttonIcons != null &&
-                        widget.buttons.indexOf(button) <
-                            widget.buttonIcons!.length
-                    ? Icon(
-                      widget.buttonIcons![widget.buttons.indexOf(button)],
-                      color:
-                          selected == widget.buttons.indexOf(button)
-                              ? Colors.white
-                              : color,
-                      size: 18,
+      child: Opacity(
+        opacity: widget.disabled == true ? 0.5 : 1,
+        child: Container(
+          decoration: BoxDecoration(
+            // Selected button uses the main color as background
+            color:
+                selected == widget.buttons.indexOf(button)
+                    ? color
+                    : Colors.white,
+            border: Border.all(color: color),
+            borderRadius:
+                isFirst
+                    ? const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
                     )
-                    : TextLy(
-                      button,
-                      color:
-                          selected == widget.buttons.indexOf(button)
-                              ? Colors.white
-                              : color,
-                    ),
+                    : isLast
+                    ? const BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    )
+                    : null,
+          ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child:
+                  widget.buttonIcons != null &&
+                          widget.buttons.indexOf(button) <
+                              widget.buttonIcons!.length
+                      ? Icon(
+                        widget.buttonIcons![widget.buttons.indexOf(button)],
+                        color:
+                            selected == widget.buttons.indexOf(button)
+                                ? Colors.white
+                                : color,
+                        size: 18,
+                      )
+                      : TextLy(
+                        button,
+                        color:
+                            selected == widget.buttons.indexOf(button)
+                                ? Colors.white
+                                : color,
+                      ),
+            ),
           ),
         ),
       ),
