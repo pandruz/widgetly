@@ -137,6 +137,12 @@ class _TextFieldLyState extends State<TextFieldLy> {
   }
 
   @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     (widget.textEditingController ?? controller)
         .selection = TextSelection.fromPosition(

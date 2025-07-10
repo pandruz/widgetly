@@ -1,3 +1,7 @@
+## 0.0.16
+
+- Added FocusManager dispose in TextFieldLy
+
 ## 0.0.15
 
 - Added disabled property for RadioLy
