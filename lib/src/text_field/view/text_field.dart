@@ -273,7 +273,12 @@ class _TextFieldLyState extends State<TextFieldLy> {
                     (node) {
                       return GestureDetectorLy(
                         onTap: () {
-                          node.unfocus();
+                          try {
+                            node.unfocus();
+                            focusNode.unfocus();
+                          } catch (e) {
+                            //
+                          }
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(10),
@@ -333,6 +338,10 @@ class _TextFieldLyState extends State<TextFieldLy> {
   }
 
   Widget buildTextField() {
+    final TextStyle textStyle = TextStyle(
+      fontSize: 24,
+      color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black,
+    );
     return (widget.maxLines ?? 0) > 1
         ? TextField(
           readOnly: widget.readOnly ?? false,
@@ -348,28 +357,9 @@ class _TextFieldLyState extends State<TextFieldLy> {
           autocorrect: false,
           controller: widget.textEditingController ?? controller,
           cursorColor: mainColor,
-          onChanged: (String value) {
-            setState(() {
-              (widget.textEditingController ?? controller).text = value;
-              (widget.textEditingController ?? controller)
-                  .selection = TextSelection.fromPosition(
-                TextPosition(offset: value.length),
-              );
-              if (widget.updateValue != null) {
-                widget.updateValue!(value);
-              }
-            });
-          },
-          onSubmitted: (String value) {
-            if (widget.submitAction != null) {
-              FocusManager.instance.primaryFocus?.unfocus();
-              widget.submitAction!(value);
-            }
-          },
-          style: TextStyle(
-            fontSize: 24,
-            color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black,
-          ),
+          onChanged: onChanged,
+          onSubmitted: onSubmitted,
+          style: textStyle,
           textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.top,
           decoration: buildDecoration(),
         )
@@ -387,30 +377,34 @@ class _TextFieldLyState extends State<TextFieldLy> {
           autocorrect: false,
           controller: widget.textEditingController ?? controller,
           cursorColor: mainColor,
-          onChanged: (String value) {
-            setState(() {
-              (widget.textEditingController ?? controller).text = value;
-              (widget.textEditingController ?? controller)
-                  .selection = TextSelection.fromPosition(
-                TextPosition(offset: value.length),
-              );
-              if (widget.updateValue != null) {
-                widget.updateValue!(value);
-              }
-            });
-          },
-          onSubmitted: (String value) {
-            if (widget.submitAction != null) {
-              FocusManager.instance.primaryFocus?.unfocus();
-              widget.submitAction!(value);
-            }
-          },
-          style: TextStyle(
-            fontSize: 24,
-            color: widget.readOnly == true ? ColorsLy.darkGrey : Colors.black,
-          ),
+          onChanged: onChanged,
+          onSubmitted: onSubmitted,
+          style: textStyle,
           textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.top,
           decoration: buildDecoration(),
         );
+  }
+
+  void onChanged(String value) {
+    setState(() {
+      (widget.textEditingController ?? controller).text = value;
+      (widget.textEditingController ?? controller).selection =
+          TextSelection.fromPosition(TextPosition(offset: value.length));
+      if (widget.updateValue != null) {
+        widget.updateValue!(value);
+      }
+    });
+  }
+
+  void onSubmitted(String value) {
+    if (widget.submitAction != null) {
+      try {
+        FocusManager.instance.primaryFocus?.unfocus();
+        focusNode.unfocus();
+      } catch (e) {
+        //
+      }
+      widget.submitAction!(value);
+    }
   }
 }
