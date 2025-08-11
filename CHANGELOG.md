@@ -1,3 +1,7 @@
+## 0.0.17
+
+- Added try catch blocks when calling unfocus in TextFieldLy
+
 ## 0.0.16
 
 - Added FocusManager dispose in TextFieldLy
