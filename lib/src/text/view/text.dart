@@ -14,6 +14,7 @@ class TextLy extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.textAlign,
+    this.underlined,
   });
 
   final String text;
@@ -26,6 +27,7 @@ class TextLy extends StatelessWidget {
   final int? maxLines;
   final TextOverflow? overflow;
   final TextAlign? textAlign;
+  final bool? underlined;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class TextLy extends StatelessWidget {
         fontWeight: fontWeight ?? FontWeight.normal,
         fontFamily: WidgetlyConfig().fontFamily ?? fontFamily,
         fontStyle: italic == true ? FontStyle.italic : null,
+        decoration: underlined == true ? TextDecoration.underline : null,
         height: height,
       ),
       maxLines: maxLines,

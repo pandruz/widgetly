@@ -1,3 +1,7 @@
+## 0.0.18
+
+- Added 'underlined' property to TextLy widget & Updated dependencies
+
 ## 0.0.17
 
 - Added try catch blocks when calling unfocus in TextFieldLy

@@ -81,7 +81,7 @@ class _RPToggleState extends State<ToggleLy> {
     return IgnorePointer(
       ignoring: widget.readOnly ?? false,
       child: Switch(
-        activeColor: color.withValues(
+        activeThumbColor: color.withValues(
           alpha: widget.readOnly == true ? 0.5 : 1.0,
         ),
         activeTrackColor: color.withValues(
