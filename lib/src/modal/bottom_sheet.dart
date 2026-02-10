@@ -19,36 +19,36 @@ class BottomSheetLy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: .center,
       mainAxisSize: MainAxisSize.min,
       children: [
         if (title != null)
           Container(
             decoration: BoxDecoration(
               color: mainColor ?? WidgetlyConfig().mainColor,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
+              borderRadius: const .only(
+                topLeft: .circular(10),
+                topRight: .circular(10),
               ),
             ),
             child: Stack(
-              alignment: Alignment.centerRight,
+              alignment: .centerRight,
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: .center,
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 30, 10),
+                        padding: const .fromLTRB(10, 10, 30, 10),
                         child: TextLy(
                           title!,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: .w600,
                           fontSize: 20,
                           color: Colors.white,
                           textAlign: TextAlign.center,
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          overflow: .ellipsis,
                         ),
                       ),
                     ),
@@ -62,7 +62,7 @@ class BottomSheetLy extends StatelessWidget {
                     }
                   },
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(60, 8, 10, 8),
+                    padding: const .fromLTRB(60, 8, 10, 8),
                     child: Icon(Icons.close, color: Colors.white, size: 22),
                   ),
                 ),
@@ -73,9 +73,9 @@ class BottomSheetLy extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(title != null ? 0 : 10),
-                topRight: Radius.circular(title != null ? 0 : 10),
+              borderRadius: .only(
+                topLeft: .circular(title != null ? 0 : 10),
+                topRight: .circular(title != null ? 0 : 10),
               ),
             ),
             child: Column(children: [Expanded(child: child)]),

@@ -60,7 +60,7 @@ class GestureDetectorLy extends StatelessWidget {
           onLongPress!();
         }
       },
-      behavior: HitTestBehavior.opaque,
+      behavior: .opaque,
       child: child,
     );
   }

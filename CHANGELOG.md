@@ -1,3 +1,8 @@
+## 1.0.0
+
+- Updated components and packages to comply to Flutter 3.38.9
+- Updated sdk to ^3.10.8
+
 ## 0.0.18
 
 - Added 'underlined' property to TextLy widget & Updated dependencies

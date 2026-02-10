@@ -75,14 +75,14 @@ class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
 
   Widget buildTitle(Color color) {
     return FittedBox(
-      fit: BoxFit.scaleDown,
-      alignment: Alignment.center,
+      fit: .scaleDown,
+      alignment: .center,
       child:
           titleWidget ??
           TextLy(
             title ?? '',
             color: color == Colors.black ? Colors.white : null,
-            fontWeight: FontWeight.w500,
+            fontWeight: .w500,
             fontSize: 22,
           ),
     );
@@ -93,36 +93,36 @@ class AppBarLy extends StatelessWidget implements PreferredSizeWidget {
         ? leadingWidget!
         : backAction == null
         ? SizedBox(
-          height: MediaQuery.of(context).size.width * 0.06,
-          width: MediaQuery.of(context).size.height * 0.06,
-        )
+            height: MediaQuery.widthOf(context) * 0.06,
+            width: MediaQuery.heightOf(context) * 0.06,
+          )
         : GestureDetectorLy(
-          onTap: () {
-            if ((isLoading ?? false) == false) {
-              FocusManager.instance.primaryFocus?.unfocus();
-              backAction!();
-            }
-          },
-          child: Opacity(
-            opacity: (isLoading ?? false) == false ? 1 : 0.3,
-            child: Center(
-              child: Icon(
-                Icons.arrow_back,
-                color: color == Colors.black ? Colors.white : Colors.black,
+            onTap: () {
+              if ((isLoading ?? false) == false) {
+                FocusManager.instance.primaryFocus?.unfocus();
+                backAction!();
+              }
+            },
+            child: Opacity(
+              opacity: (isLoading ?? false) == false ? 1 : 0.3,
+              child: Center(
+                child: Icon(
+                  Icons.arrow_back,
+                  color: color == Colors.black ? Colors.white : Colors.black,
+                ),
               ),
             ),
-          ),
-        );
+          );
   }
 
   List<Widget> buildActions(BuildContext context) {
     return trailingWidgets.isNullOrEmpty
         ? [
-          SizedBox(
-            height: MediaQuery.of(context).size.width * 0.06,
-            width: MediaQuery.of(context).size.height * 0.06,
-          ),
-        ]
+            SizedBox(
+              height: MediaQuery.widthOf(context) * 0.06,
+              width: MediaQuery.heightOf(context) * 0.06,
+            ),
+          ]
         : trailingWidgets!;
   }
 

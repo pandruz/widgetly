@@ -24,23 +24,21 @@ class ItemSelectorLy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child:
-          values.isEmpty
-              ? buildNoElements()
-              : SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      for (var element in values)
-                        buildElement(context, element),
-                    ],
-                  ),
+      width: MediaQuery.widthOf(context),
+      child: values.isEmpty
+          ? buildNoElements()
+          : SingleChildScrollView(
+              child: Padding(
+                padding: const .all(20),
+                child: Column(
+                  mainAxisAlignment: .start,
+                  crossAxisAlignment: .start,
+                  children: [
+                    for (var element in values) buildElement(context, element),
+                  ],
                 ),
               ),
+            ),
     );
   }
 
@@ -63,12 +61,12 @@ class ItemSelectorLy extends StatelessWidget {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
+        padding: const .only(bottom: 10),
         child: SizedBox(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.widthOf(context),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: .start,
+            crossAxisAlignment: .start,
             children: [
               TextLy(
                 element == null ? '-' : '$element',
@@ -77,7 +75,7 @@ class ItemSelectorLy extends StatelessWidget {
               ),
               if (values.last != element)
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const .only(top: 5),
                   child: DividerLy(height: 1),
                 ),
             ],

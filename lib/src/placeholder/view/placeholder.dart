@@ -53,11 +53,11 @@ class PlaceholderLy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const .symmetric(horizontal: 20),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.widthOf(context),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           mainAxisSize: MainAxisSize.max,
           children: [
             buildIcon(),
@@ -79,12 +79,12 @@ class PlaceholderLy extends StatelessWidget {
 
   Widget buildText() {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const .only(top: 10),
       child: TextLy(
         placeholderText,
         color: mainColor ?? ColorsLy.darkGrey,
         fontSize: 30,
-        fontWeight: FontWeight.w500,
+        fontWeight: .w500,
         textAlign: TextAlign.center,
       ),
     );
@@ -92,7 +92,7 @@ class PlaceholderLy extends StatelessWidget {
 
   Widget buildReset() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const .only(top: 20),
       child: ButtonLy(
         label: resetButtonLabel ?? LocalizationLy.instance.translate('Reset'),
         buttonFunc: () {

@@ -70,10 +70,10 @@ class _CustomPickerState extends State<PickerLy> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const .only(bottom: 10),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: .center,
+        mainAxisAlignment: .spaceBetween,
         children: [if (widget.label != null) buildLabel(), buildValue()],
       ),
     );
@@ -83,10 +83,9 @@ class _CustomPickerState extends State<PickerLy> {
     return Expanded(
       flex: 4,
       child: SizedBox(
-        width:
-            widget.label == null
-                ? MediaQuery.of(context).size.width
-                : MediaQuery.of(context).size.width / 1.9,
+        width: widget.label == null
+            ? MediaQuery.widthOf(context)
+            : MediaQuery.widthOf(context) / 1.9,
         height: 45,
         child: Row(
           children: [
@@ -100,15 +99,15 @@ class _CustomPickerState extends State<PickerLy> {
 
   Widget buildLabel() {
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 3.5,
+      width: MediaQuery.widthOf(context) / 3.5,
       child: Padding(
-        padding: const EdgeInsets.only(right: 10),
+        padding: const .only(right: 10),
         child: TextLy(
           widget.label!.toUpperCase(),
           color: ColorsLy.darkGrey,
           fontSize: 14,
           maxLines: widget.labelMaxLines ?? 1,
-          overflow: TextOverflow.ellipsis,
+          overflow: .ellipsis,
         ),
       ),
     );
@@ -135,13 +134,13 @@ class _CustomPickerState extends State<PickerLy> {
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: ColorsLy.darkGrey, width: 1.5),
-            borderRadius: BorderRadius.circular(10),
+            border: .all(color: ColorsLy.darkGrey, width: 1.5),
+            borderRadius: .circular(10),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const .only(left: 10),
             child: Align(
-              alignment: Alignment.centerLeft,
+              alignment: .centerLeft,
               child: Row(
                 children: [
                   Expanded(
@@ -152,11 +151,11 @@ class _CustomPickerState extends State<PickerLy> {
                       fontSize: 24,
                       color: Colors.black,
                       maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                      overflow: .ellipsis,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: const .only(right: 10),
                     child: SizedBox(
                       height: 55,
                       child: Icon(
@@ -177,7 +176,7 @@ class _CustomPickerState extends State<PickerLy> {
 
   Widget buildDelete() {
     return Padding(
-      padding: const EdgeInsets.only(left: 10),
+      padding: const .only(left: 10),
       child: GestureDetectorLy(
         onTap: () async {
           if (widget.deleteAction != null) {
@@ -188,9 +187,9 @@ class _CustomPickerState extends State<PickerLy> {
           });
         },
         child: Container(
-          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+          decoration: BoxDecoration(shape: .circle, color: Colors.red),
           child: Padding(
-            padding: const EdgeInsets.all(5),
+            padding: const .all(5),
             child: Icon(Icons.close, color: Colors.white, size: 18),
           ),
         ),

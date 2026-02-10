@@ -67,7 +67,7 @@ class _CupertinoExpandableBoxLyState extends State<CupertinoExpandableBoxLy> {
             // The header is the last element when collapsed
             isLast: !expand,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: .start,
               mainAxisSize: MainAxisSize.max,
               children: [
                 // Display different icons based on expansion state
@@ -79,12 +79,8 @@ class _CupertinoExpandableBoxLyState extends State<CupertinoExpandableBoxLy> {
                 ),
                 // Title text with consistent styling
                 Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: TextLy(
-                    widget.title,
-                    color: color,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  padding: const .only(left: 10),
+                  child: TextLy(widget.title, color: color, fontWeight: .w500),
                 ),
               ],
             ),

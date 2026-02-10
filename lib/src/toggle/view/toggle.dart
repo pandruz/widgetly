@@ -60,9 +60,9 @@ class _RPToggleState extends State<ToggleLy> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 20,
+      height: MediaQuery.heightOf(context) / 20,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: .spaceBetween,
         children: [
           if ((widget.description ?? '').isNotEmpty) buildDescription(),
           buildSwitch(context, color),

@@ -57,7 +57,7 @@ class StepperLy extends StatelessWidget {
   Widget build(BuildContext context) {
     Color color = mainColor ?? WidgetlyConfig().mainColor;
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: .spaceBetween,
       children: [
         if (description != null) buildDescription(context),
         buildQuantityButton(context, decrement: true, color: color),
@@ -116,41 +116,38 @@ class StepperLy extends StatelessWidget {
     Color color,
   ) {
     final width =
-        (MediaQuery.of(context).size.width / (kIsWeb == true ? 10 : 1.9)) / 3;
-    final height = MediaQuery.of(context).size.height / 16;
+        (MediaQuery.widthOf(context) / (kIsWeb == true ? 10 : 1.9)) / 3;
+    final height = MediaQuery.heightOf(context) / 16;
     final isDisabled = quantity == limit;
-    final buttonColor =
-        outlined == true
-            ? Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0)
-            : color.withValues(alpha: isDisabled ? 0.3 : 1.0);
-    final textColor =
-        outlined == true
-            ? color.withValues(alpha: isDisabled ? 0.3 : 1.0)
-            : Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0);
+    final buttonColor = outlined == true
+        ? Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0)
+        : color.withValues(alpha: isDisabled ? 0.3 : 1.0);
+    final textColor = outlined == true
+        ? color.withValues(alpha: isDisabled ? 0.3 : 1.0)
+        : Colors.white.withValues(alpha: isDisabled ? 0.3 : 1.0);
     return Container(
       width: width,
       height: height,
       decoration: BoxDecoration(
         color: buttonColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(!isAddButton ? 8 : 0),
-          bottomLeft: Radius.circular(!isAddButton ? 8 : 0),
-          topRight: Radius.circular(isAddButton ? 8 : 0),
-          bottomRight: Radius.circular(isAddButton ? 8 : 0),
+        borderRadius: .only(
+          topLeft: .circular(!isAddButton ? 8 : 0),
+          bottomLeft: .circular(!isAddButton ? 8 : 0),
+          topRight: .circular(isAddButton ? 8 : 0),
+          bottomRight: .circular(isAddButton ? 8 : 0),
         ),
-        border: Border.all(
+        border: .all(
           strokeAlign: BorderSide.strokeAlignInside,
           width: 2.5,
-          color:
-              outlined == true
-                  ? (isDisabled ? color.withValues(alpha: 0.3) : color)
-                  : Colors.transparent,
+          color: outlined == true
+              ? (isDisabled ? color.withValues(alpha: 0.3) : color)
+              : Colors.transparent,
         ),
       ),
       child: Center(
         child: TextLy(
           isAddButton ? '+' : '-',
-          fontWeight: FontWeight.bold,
+          fontWeight: .bold,
           color: textColor,
           fontSize: 28,
         ),
@@ -160,17 +157,17 @@ class StepperLy extends StatelessWidget {
 
   Widget buildText(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 16,
+      height: MediaQuery.heightOf(context) / 16,
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: ColorsLy.darkGrey, width: 2),
+        border: .all(color: ColorsLy.darkGrey, width: 2),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(4, 2, 4, 2),
+        padding: const .fromLTRB(4, 2, 4, 2),
         child: FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: Alignment.center,
-          child: TextLy('$quantity', fontWeight: FontWeight.bold, fontSize: 24),
+          fit: .scaleDown,
+          alignment: .center,
+          child: TextLy('$quantity', fontWeight: .bold, fontSize: 24),
         ),
       ),
     );
@@ -178,15 +175,15 @@ class StepperLy extends StatelessWidget {
 
   Widget buildDescription(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * (kIsWeb == true ? 0.1 : 0.26),
+      width: MediaQuery.widthOf(context) * (kIsWeb == true ? 0.1 : 0.26),
       child: Padding(
-        padding: const EdgeInsets.only(right: 5),
+        padding: const .only(right: 5),
         child: TextLy(
           description!.toUpperCase(),
           color: ColorsLy.darkGrey,
           fontSize: 14,
           maxLines: descriptionMaxLines ?? 1,
-          overflow: TextOverflow.ellipsis,
+          overflow: .ellipsis,
         ),
       ),
     );

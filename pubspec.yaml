@@ -1,6 +1,6 @@
 name: widgetly
 description: "A collection of customizable Flutter widgets designed for rapid UI development. Widgetly provides ready-to-use components with consistent styling and behavior."
-version: 0.0.18
+version: 1.0.0
 homepage: https://github.com/aprizzo/widgetly
 repository: https://github.com/aprizzo/widgetly
 documentation: https://github.com/aprizzo/widgetly/blob/main/README.md
@@ -14,7 +14,7 @@ topics:
   - customizable
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.10.8
   flutter: ">=1.17.0"
 
 dependencies:

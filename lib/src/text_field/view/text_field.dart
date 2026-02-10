@@ -92,7 +92,7 @@ class TextFieldLy extends StatefulWidget {
   final TextEditingController? textEditingController;
 
   /// Vertical alignment of text within the text field.
-  /// Defaults to TextAlignVertical.top if not specified.
+  /// Defaults to .top if not specified.
   final TextAlignVertical? textAlignVertical;
 
   /// Maximum number of lines for a multiline TextField.
@@ -144,24 +144,21 @@ class _TextFieldLyState extends State<TextFieldLy> {
 
   @override
   Widget build(BuildContext context) {
-    (widget.textEditingController ?? controller)
-        .selection = TextSelection.fromPosition(
-      TextPosition(
-        offset: (widget.textEditingController ?? controller).text.length,
-      ),
-    );
+    (widget.textEditingController ?? controller).selection =
+        TextSelection.fromPosition(
+          TextPosition(
+            offset: (widget.textEditingController ?? controller).text.length,
+          ),
+        );
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment:
-          (widget.maxLines ?? 0) > 1
-              ? CrossAxisAlignment.start
-              : CrossAxisAlignment.center,
+      mainAxisAlignment: .spaceBetween,
+      crossAxisAlignment: (widget.maxLines ?? 0) > 1 ? .start : .center,
       children: [
         if (widget.label != null) buildLabel(),
         Expanded(
           child: SizedBox(
             width:
-                MediaQuery.of(context).size.width /
+                MediaQuery.widthOf(context) /
                 (widget.label == null
                     ? 1
                     : kIsWeb == true
@@ -190,18 +187,15 @@ class _TextFieldLyState extends State<TextFieldLy> {
 
   Widget buildButtons() {
     return Padding(
-      padding: EdgeInsets.only(top: (widget.maxLines ?? 0) > 1 ? 8 : 0),
+      padding: .only(top: (widget.maxLines ?? 0) > 1 ? 8 : 0),
       child: SizedBox(
         height: (widget.height ?? 55) - 6,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment:
-              (widget.maxLines ?? 0) > 1
-                  ? CrossAxisAlignment.start
-                  : CrossAxisAlignment.center,
+          mainAxisAlignment: .end,
+          crossAxisAlignment: (widget.maxLines ?? 0) > 1 ? .start : .center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 10),
+              padding: const .only(right: 10),
               child: GestureDetectorLy(
                 onTap: () {
                   if (widget.updateValue != null) {
@@ -216,7 +210,7 @@ class _TextFieldLyState extends State<TextFieldLy> {
             ),
             if (widget.obscureText != null)
               Padding(
-                padding: const EdgeInsets.only(right: 10),
+                padding: const .only(right: 10),
                 child: GestureDetectorLy(
                   onTap: () {
                     widget.obscureTextFunction!();
@@ -237,15 +231,14 @@ class _TextFieldLyState extends State<TextFieldLy> {
 
   Widget buildLabel() {
     return Padding(
-      padding: const EdgeInsets.only(right: 10),
+      padding: const .only(right: 10),
       child: SizedBox(
-        width:
-            kIsWeb == true
-                ? (MediaQuery.of(context).size.width * 2 / 3) / 3.5
-                : MediaQuery.of(context).size.width / 3.8,
+        width: kIsWeb == true
+            ? (MediaQuery.widthOf(context) * 2 / 3) / 3.5
+            : MediaQuery.widthOf(context) / 3.8,
         child: FittedBox(
-          alignment: Alignment.centerLeft,
-          fit: BoxFit.scaleDown,
+          alignment: .centerLeft,
+          fit: .scaleDown,
           child: TextLy(
             widget.descriptionLowercased == true
                 ? widget.label!
@@ -263,41 +256,40 @@ class _TextFieldLyState extends State<TextFieldLy> {
     return KeyboardActionsConfig(
       keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
       nextFocus: false,
-      actions:
-          widget.readOnly != true && kIsWeb != true
-              ? [
-                KeyboardActionsItem(
-                  focusNode: focusNode,
-                  displayArrows: false,
-                  toolbarButtons: [
-                    (node) {
-                      return GestureDetectorLy(
-                        onTap: () {
-                          try {
-                            node.unfocus();
-                            focusNode.unfocus();
-                          } catch (e) {
-                            //
-                          }
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: TextLy(
-                            LocalizationLy.instance.translate('Close'),
-                          ),
+      actions: widget.readOnly != true && kIsWeb != true
+          ? [
+              KeyboardActionsItem(
+                focusNode: focusNode,
+                displayArrows: false,
+                toolbarButtons: [
+                  (node) {
+                    return GestureDetectorLy(
+                      onTap: () {
+                        try {
+                          node.unfocus();
+                          focusNode.unfocus();
+                        } catch (e) {
+                          //
+                        }
+                      },
+                      child: Padding(
+                        padding: const .all(10),
+                        child: TextLy(
+                          LocalizationLy.instance.translate('Close'),
                         ),
-                      );
-                    },
-                  ],
-                ),
-              ]
-              : [],
+                      ),
+                    );
+                  },
+                ],
+              ),
+            ]
+          : [],
     );
   }
 
   InputDecoration buildDecoration() {
     return InputDecoration(
-      contentPadding: EdgeInsets.only(
+      contentPadding: .only(
         left: 10,
         top: 8,
         right:
@@ -316,15 +308,16 @@ class _TextFieldLyState extends State<TextFieldLy> {
       fillColor: Colors.white,
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: mainColor, width: 2),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: .circular(10),
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color:
-              widget.readOnly == true ? Colors.transparent : ColorsLy.darkGrey,
+          color: widget.readOnly == true
+              ? Colors.transparent
+              : ColorsLy.darkGrey,
           width: 1.5,
         ),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: .circular(10),
       ),
     );
   }
@@ -344,45 +337,45 @@ class _TextFieldLyState extends State<TextFieldLy> {
     );
     return (widget.maxLines ?? 0) > 1
         ? TextField(
-          readOnly: widget.readOnly ?? false,
-          textCapitalization:
-              widget.textCapitalization == true
-                  ? TextCapitalization.characters
-                  : TextCapitalization.none,
-          maxLines: widget.maxLines,
-          keyboardType: TextInputType.multiline,
-          focusNode: focusNode,
-          textInputAction: widget.textInputAction,
-          enableSuggestions: false,
-          autocorrect: false,
-          controller: widget.textEditingController ?? controller,
-          cursorColor: mainColor,
-          onChanged: onChanged,
-          onSubmitted: onSubmitted,
-          style: textStyle,
-          textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.top,
-          decoration: buildDecoration(),
-        )
+            readOnly: widget.readOnly ?? false,
+            textCapitalization: widget.textCapitalization == true
+                ? .characters
+                : .none,
+            maxLines: widget.maxLines,
+            keyboardType: TextInputType.multiline,
+            focusNode: focusNode,
+            textInputAction: widget.textInputAction,
+            enableSuggestions: false,
+            autocorrect: false,
+            controller: widget.textEditingController ?? controller,
+            cursorColor: mainColor,
+            onChanged: onChanged,
+            onSubmitted: onSubmitted,
+            style: textStyle,
+            textAlignVertical: widget.textAlignVertical ?? .top,
+            decoration: buildDecoration(),
+          )
         : TextField(
-          readOnly: widget.readOnly ?? false,
-          textCapitalization:
-              widget.textCapitalization == true
-                  ? TextCapitalization.characters
-                  : TextCapitalization.none,
-          keyboardType: widget.keyboardType,
-          focusNode: focusNode,
-          textInputAction: widget.textInputAction,
-          obscureText: widget.obscureText == null ? false : widget.obscureText!,
-          enableSuggestions: false,
-          autocorrect: false,
-          controller: widget.textEditingController ?? controller,
-          cursorColor: mainColor,
-          onChanged: onChanged,
-          onSubmitted: onSubmitted,
-          style: textStyle,
-          textAlignVertical: widget.textAlignVertical ?? TextAlignVertical.top,
-          decoration: buildDecoration(),
-        );
+            readOnly: widget.readOnly ?? false,
+            textCapitalization: widget.textCapitalization == true
+                ? .characters
+                : .none,
+            keyboardType: widget.keyboardType,
+            focusNode: focusNode,
+            textInputAction: widget.textInputAction,
+            obscureText: widget.obscureText == null
+                ? false
+                : widget.obscureText!,
+            enableSuggestions: false,
+            autocorrect: false,
+            controller: widget.textEditingController ?? controller,
+            cursorColor: mainColor,
+            onChanged: onChanged,
+            onSubmitted: onSubmitted,
+            style: textStyle,
+            textAlignVertical: widget.textAlignVertical ?? .top,
+            decoration: buildDecoration(),
+          );
   }
 
   void onChanged(String value) {

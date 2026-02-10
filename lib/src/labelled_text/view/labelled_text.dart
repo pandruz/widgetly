@@ -70,19 +70,16 @@ class LabelledTextLy extends StatelessWidget {
   final FontWeight? fontWeight;
 
   /// Alignment of the children along the cross axis.
-  /// Defaults to CrossAxisAlignment.end for single-line text, or
-  /// CrossAxisAlignment.start for multi-line text.
+  /// Defaults to .end for single-line text, or
+  /// .start for multi-line text.
   final CrossAxisAlignment? crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment:
-          crossAxisAlignment ??
-          ((maxLines ?? 0) < 2
-              ? CrossAxisAlignment.end
-              : CrossAxisAlignment.start),
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment ?? ((maxLines ?? 0) < 2 ? .end : .start),
+      mainAxisAlignment: .spaceBetween,
       children: [buildDescription(), buildValue()],
     );
   }
@@ -90,13 +87,12 @@ class LabelledTextLy extends StatelessWidget {
   Widget buildValue() {
     return Expanded(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: .start,
         children: [
           Expanded(
-            child:
-                disableOverflow == true
-                    ? FittedBox(fit: BoxFit.scaleDown, child: buildText())
-                    : buildText(),
+            child: disableOverflow == true
+                ? FittedBox(fit: .scaleDown, child: buildText())
+                : buildText(),
           ),
         ],
       ),
@@ -110,20 +106,20 @@ class LabelledTextLy extends StatelessWidget {
       fontSize: valueSize,
       fontWeight: fontWeight,
       maxLines: maxLines ?? 2,
-      overflow: TextOverflow.ellipsis,
+      overflow: .ellipsis,
     );
   }
 
   Widget buildDescription() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 5, 15, 0),
+      padding: const .fromLTRB(0, 5, 15, 0),
       child: SizedBox(
         width: largeDescr == true ? 120 : 360 / (descriptionWidthDivider ?? 4),
         child: Text(
           (label ?? '').isEmpty ? '-' : label!.toUpperCase(),
           style: TextStyle(color: ColorsLy.darkGrey, fontSize: 14),
           maxLines: labelMaxLines ?? 1,
-          overflow: TextOverflow.ellipsis,
+          overflow: .ellipsis,
         ),
       ),
     );

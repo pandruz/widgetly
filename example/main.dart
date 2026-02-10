@@ -74,19 +74,18 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               showDialog(
                 context: context,
-                builder:
-                    (context) => AlertDialog(
-                      title: const Text('About Widgetly'),
-                      content: const Text(
-                        'This screen demonstrates all Widgetly components in a single view.',
-                      ),
-                      actions: [
-                        TextButton(
-                          child: const Text('OK'),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ],
+                builder: (context) => AlertDialog(
+                  title: const Text('About Widgetly'),
+                  content: const Text(
+                    'This screen demonstrates all Widgetly components in a single view.',
+                  ),
+                  actions: [
+                    TextButton(
+                      child: const Text('OK'),
+                      onPressed: () => Navigator.pop(context),
                     ),
+                  ],
+                ),
               );
             },
           ),
@@ -94,9 +93,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       // Main body with all components
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const .all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: [
             // Section header
             const LabelledTextLy(
@@ -128,8 +127,8 @@ class _HomeScreenState extends State<HomeScreen> {
             StepperLy(
               mainColor: WidgetlyConfig().mainColor,
               quantity: _stepperValue,
-              updateQuantity:
-                  (value) => setState(() => _stepperValue = value.toInt()),
+              updateQuantity: (value) =>
+                  setState(() => _stepperValue = value.toInt()),
               qtyLimit: 10,
               description: 'QUANTITY',
             ),
@@ -140,8 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
               label: 'SELECT FRUIT',
               selectedValue: _selectedItem,
               values: _items,
-              updateValue:
-                  (value) => setState(() => _selectedItem = value as String),
+              updateValue: (value) =>
+                  setState(() => _selectedItem = value as String),
               mainColor: WidgetlyConfig().mainColor,
               deleteAction: () => setState(() => _selectedItem = null),
             ),
@@ -204,24 +203,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // RadioLy example
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 TextLy(
                   'SELECTED OPTION: $_selectedOption',
                   fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: .bold,
                 ),
                 const SizedBox(height: 8),
                 ...List.generate(_radioOptions.length, (index) {
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
+                    padding: const .only(bottom: 8.0),
                     child: RadioLy(
                       buttons: _radioOptions,
                       selected: index,
-                      update:
-                          (value) => setState(
-                            () => _selectedOption = _radioOptions[value],
-                          ),
+                      update: (value) => setState(
+                        () => _selectedOption = _radioOptions[value],
+                      ),
                       mainColor: WidgetlyConfig().mainColor,
                     ),
                   );
@@ -231,31 +229,27 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 24),
 
             // CupertinoBoxLy example
-            const TextLy(
-              'CUPERTINO BOX',
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+            const TextLy('CUPERTINO BOX', fontSize: 14, fontWeight: .bold),
             const SizedBox(height: 8),
             Column(
               children: [
                 CupertinoBoxLy(
                   isFirst: true,
                   child: const Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: .all(16.0),
                     child: TextLy('First Item in List', fontSize: 16),
                   ),
                 ),
                 CupertinoBoxLy(
                   child: const Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: .all(16.0),
                     child: TextLy('Middle Item in List', fontSize: 16),
                   ),
                 ),
                 CupertinoBoxLy(
                   isLast: true,
                   child: const Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: .all(16.0),
                     child: TextLy('Last Item in List', fontSize: 16),
                   ),
                 ),
@@ -267,15 +261,15 @@ class _HomeScreenState extends State<HomeScreen> {
             const TextLy(
               'CUPERTINO EXPANDABLE BOX',
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
             ),
             const SizedBox(height: 8),
             CupertinoExpandableBoxLy(
               title: 'Tap to Expand/Collapse',
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const .all(16.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: .start,
                   children: [
                     TextLy('This is expandable content', fontSize: 16),
                     const SizedBox(height: 8),
@@ -294,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const TextLy(
               'GROUPED EXPANDABLE BOXES',
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
             ),
             const SizedBox(height: 8),
             Column(
@@ -302,21 +296,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 CupertinoExpandableBoxLy(
                   title: 'Section 1',
                   child: const Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: .all(16.0),
                     child: TextLy('Content for Section 1', fontSize: 16),
                   ),
                 ),
                 CupertinoExpandableBoxLy(
                   title: 'Section 2',
                   child: const Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: .all(16.0),
                     child: TextLy('Content for Section 2', fontSize: 16),
                   ),
                 ),
                 CupertinoExpandableBoxLy(
                   title: 'Section 3',
                   child: const Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: .all(16.0),
                     child: TextLy('Content for Section 3', fontSize: 16),
                   ),
                 ),

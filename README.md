@@ -223,7 +223,7 @@ TextFieldLy(
   submitAction: (value) => submitForm(),
   textCapitalization: true,
   height: 60,
-  textAlignVertical: TextAlignVertical.center,
+  textAlignVertical: .center,
 )
 ```
 
@@ -294,7 +294,7 @@ CupertinoBoxLy(
   isFirst: true,
   isLast: true,
   child: Padding(
-    padding: EdgeInsets.all(16.0),
+    padding: .all(16.0),
     child: Text('Single Item'),
   ),
 )
@@ -305,20 +305,20 @@ Column(
     CupertinoBoxLy(
       isFirst: true,
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: .all(16.0),
         child: Text('First Item'),
       ),
     ),
     CupertinoBoxLy(
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: .all(16.0),
         child: Text('Middle Item'),
       ),
     ),
     CupertinoBoxLy(
       isLast: true,
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: .all(16.0),
         child: Text('Last Item'),
       ),
     ),
@@ -343,7 +343,7 @@ A customizable expandable box widget with Cupertino styling.
 CupertinoExpandableBoxLy(
   title: 'Expandable Box',
   child: Padding(
-    padding: EdgeInsets.all(16.0),
+    padding: .all(16.0),
     child: Text('Expandable Content'),
   ),
   onExpand: () => print('Expanded'),
@@ -369,12 +369,12 @@ TextLy(
   'Hello World',
   color: Colors.blue,
   fontSize: 20,
-  fontWeight: FontWeight.bold,
+  fontWeight: .bold,
   fontFamily: 'Roboto',
   italic: true,
   height: 1.5,
   maxLines: 2,
-  overflow: TextOverflow.ellipsis,
+  overflow: .ellipsis,
   textAlign: TextAlign.center,
 )
 ```

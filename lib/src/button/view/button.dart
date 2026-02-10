@@ -78,12 +78,11 @@ class ButtonLy extends StatelessWidget {
             height: 45,
             decoration: buildDecoration(color),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+              padding: const .symmetric(vertical: 5),
               child: Center(
-                child:
-                    isLoading == true
-                        ? buildLoading(color)
-                        : buildButton(color),
+                child: isLoading == true
+                    ? buildLoading(color)
+                    : buildButton(color),
               ),
             ),
           ),
@@ -93,33 +92,32 @@ class ButtonLy extends StatelessWidget {
   }
 
   Widget buildButton(Color color) {
-    final Color itemsColor =
-        showOutline == true
-            ? (textColor ?? color)
-            : textColor != null
-            ? textColor!
-            : color == Colors.white
-            ? Colors.black
-            : Colors.white;
+    final Color itemsColor = showOutline == true
+        ? (textColor ?? color)
+        : textColor != null
+        ? textColor!
+        : color == Colors.white
+        ? Colors.black
+        : Colors.white;
     return FittedBox(
-      fit: BoxFit.scaleDown,
-      alignment: Alignment.center,
+      fit: .scaleDown,
+      alignment: .center,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const .symmetric(horizontal: 20),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           mainAxisSize: MainAxisSize.max,
           children: [
             if (icon != null)
               Padding(
-                padding: const EdgeInsets.only(right: 10),
+                padding: const .only(right: 10),
                 child: Icon(icon, color: itemsColor, size: 26),
               ),
             TextLy(
               buttonFunc != null ? label.toUpperCase() : label,
               color: itemsColor,
               fontSize: 26,
-              fontWeight: FontWeight.w500,
+              fontWeight: .w500,
             ),
           ],
         ),
@@ -140,8 +138,8 @@ class ButtonLy extends StatelessWidget {
   BoxDecoration buildDecoration(Color color) {
     return BoxDecoration(
       color: showOutline == true ? Colors.transparent : color,
-      border: Border.all(color: color, width: 2),
-      borderRadius: BorderRadius.circular(10),
+      border: .all(color: color, width: 2),
+      borderRadius: .circular(10),
     );
   }
 }

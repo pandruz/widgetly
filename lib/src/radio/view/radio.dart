@@ -75,9 +75,9 @@ class _RadioLyState extends State<RadioLy> {
     return IgnorePointer(
       ignoring: widget.disabled == true,
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const .all(10),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           mainAxisSize: MainAxisSize.max,
           children: [
             for (String button in widget.buttons)
@@ -115,46 +115,39 @@ class _RadioLyState extends State<RadioLy> {
         child: Container(
           decoration: BoxDecoration(
             // Selected button uses the main color as background
-            color:
-                selected == widget.buttons.indexOf(button)
-                    ? color
-                    : Colors.white,
-            border: Border.all(color: color),
-            borderRadius:
-                isFirst
-                    ? const BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                    )
-                    : isLast
-                    ? const BorderRadius.only(
-                      topRight: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    )
-                    : null,
+            color: selected == widget.buttons.indexOf(button)
+                ? color
+                : Colors.white,
+            border: .all(color: color),
+            borderRadius: isFirst
+                ? const .only(topLeft: .circular(10), bottomLeft: .circular(10))
+                : isLast
+                ? const .only(
+                    topRight: .circular(10),
+                    bottomRight: .circular(10),
+                  )
+                : null,
           ),
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const .all(10),
               child:
                   widget.buttonIcons != null &&
-                          widget.buttons.indexOf(button) <
-                              widget.buttonIcons!.length
-                      ? Icon(
-                        widget.buttonIcons![widget.buttons.indexOf(button)],
-                        color:
-                            selected == widget.buttons.indexOf(button)
-                                ? Colors.white
-                                : color,
-                        size: 18,
-                      )
-                      : TextLy(
-                        button,
-                        color:
-                            selected == widget.buttons.indexOf(button)
-                                ? Colors.white
-                                : color,
-                      ),
+                      widget.buttons.indexOf(button) <
+                          widget.buttonIcons!.length
+                  ? Icon(
+                      widget.buttonIcons![widget.buttons.indexOf(button)],
+                      color: selected == widget.buttons.indexOf(button)
+                          ? Colors.white
+                          : color,
+                      size: 18,
+                    )
+                  : TextLy(
+                      button,
+                      color: selected == widget.buttons.indexOf(button)
+                          ? Colors.white
+                          : color,
+                    ),
             ),
           ),
         ),

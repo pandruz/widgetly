@@ -16,16 +16,12 @@ class ModalRepository {
     try {
       showModalBottomSheet(
         context: context,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: .circular(10.0)),
         isDismissible: true,
         isScrollControlled: true,
         builder: (BuildContext context) {
           return SizedBox(
-            height:
-                MediaQuery.of(context).size.height *
-                (isBig == true ? 0.9 : 0.7),
+            height: MediaQuery.heightOf(context) * (isBig == true ? 0.9 : 0.7),
             child: BottomSheetLy(
               mainColor: mainColor,
               title: title,

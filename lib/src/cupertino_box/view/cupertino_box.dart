@@ -70,36 +70,32 @@ class CupertinoBoxLy extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         // Add a bottom border for all items except the last one
-        border:
-            (isLast ?? false) == false
-                ? BorderDirectional(
-                  bottom: BorderSide(color: ColorsLy.lightGrey, width: 0.5),
-                )
-                : null,
+        border: (isLast ?? false) == false
+            ? BorderDirectional(
+                bottom: BorderSide(color: ColorsLy.lightGrey, width: 0.5),
+              )
+            : null,
         // Set background color based on current platform brightness
         color: ColorMethodsLy.white(
           brightness: PlatformDispatcher.instance.platformBrightness,
         ),
         // Determine the border radius based on the item's position
-        borderRadius:
-            (isFirst ?? false) == false && (isLast ?? false) == false
-                ? null // Middle items have no border radius
-                : (isFirst ?? false) == true && (isLast ?? false) == true
-                ? BorderRadius.all(
-                  Radius.circular(10),
-                ) // Single items have radius on all corners
-                : (isFirst ?? false) == true
-                ? BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ) // First item has radius on top corners
-                : BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ), // Last item has radius on bottom corners
+        borderRadius: (isFirst ?? false) == false && (isLast ?? false) == false
+            ? null // Middle items have no border radius
+            : (isFirst ?? false) == true && (isLast ?? false) == true
+            ? .all(.circular(10)) // Single items have radius on all corners
+            : (isFirst ?? false) == true
+            ? .only(
+                topLeft: .circular(10),
+                topRight: .circular(10),
+              ) // First item has radius on top corners
+            : .only(
+                bottomLeft: .circular(10),
+                bottomRight: .circular(10),
+              ), // Last item has radius on bottom corners
       ),
       // Add consistent padding around the child widget
-      child: Padding(padding: const EdgeInsets.all(10), child: child),
+      child: Padding(padding: const .all(10), child: child),
     );
   }
 }

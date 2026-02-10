@@ -36,7 +36,7 @@ class TextLy extends StatelessWidget {
       style: TextStyle(
         color: color ?? Colors.black,
         fontSize: fontSize ?? 18,
-        fontWeight: fontWeight ?? FontWeight.normal,
+        fontWeight: fontWeight ?? .normal,
         fontFamily: WidgetlyConfig().fontFamily ?? fontFamily,
         fontStyle: italic == true ? FontStyle.italic : null,
         decoration: underlined == true ? TextDecoration.underline : null,
