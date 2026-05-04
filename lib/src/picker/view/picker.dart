@@ -69,13 +69,10 @@ class _CustomPickerState extends State<PickerLy> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const .only(bottom: 10),
-      child: Row(
-        crossAxisAlignment: .center,
-        mainAxisAlignment: .spaceBetween,
-        children: [if (widget.label != null) buildLabel(), buildValue()],
-      ),
+    return Row(
+      crossAxisAlignment: .center,
+      mainAxisAlignment: .spaceBetween,
+      children: [if (widget.label != null) buildLabel(), buildValue()],
     );
   }
 

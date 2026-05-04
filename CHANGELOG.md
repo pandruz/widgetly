@@ -1,3 +1,8 @@
+## 1.0.1
+
+- Updated components and packages to comply to latest Flutter stable version
+- Removed padding from PickerLy
+
 ## 1.0.0
 
 - Updated components and packages to comply to Flutter 3.38.9
