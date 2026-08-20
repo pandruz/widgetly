@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Updated components and packages
+
 ## 1.0.1
 
 - Updated components and packages to comply to latest Flutter stable version

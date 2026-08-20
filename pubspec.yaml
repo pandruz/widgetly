@@ -1,6 +1,6 @@
 name: widgetly
 description: "A collection of customizable Flutter widgets designed for rapid UI development. Widgetly provides ready-to-use components with consistent styling and behavior."
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/aprizzo/widgetly
 repository: https://github.com/aprizzo/widgetly
 documentation: https://github.com/aprizzo/widgetly/blob/main/README.md
@@ -20,7 +20,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  keyboard_actions: ^4.2.0
+  keyboard_actions: ^5.0.2
 
 dev_dependencies:
   flutter_test:

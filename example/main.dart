@@ -67,7 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBarLy(
         title: 'All Widgetly Components',
         mainColor: WidgetlyConfig().mainColor,
-        backAction: () => Navigator.pop(context),
         trailingWidgets: [
           IconButton(
             icon: const Icon(Icons.info_outline),
@@ -235,23 +234,14 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 CupertinoBoxLy(
                   isFirst: true,
-                  child: const Padding(
-                    padding: .all(16.0),
-                    child: TextLy('First Item in List', fontSize: 16),
-                  ),
+                  child: TextLy('First Item in List', fontSize: 16),
                 ),
                 CupertinoBoxLy(
-                  child: const Padding(
-                    padding: .all(16.0),
-                    child: TextLy('Middle Item in List', fontSize: 16),
-                  ),
+                  child: TextLy('Middle Item in List', fontSize: 16),
                 ),
                 CupertinoBoxLy(
                   isLast: true,
-                  child: const Padding(
-                    padding: .all(16.0),
-                    child: TextLy('Last Item in List', fontSize: 16),
-                  ),
+                  child: TextLy('Last Item in List', fontSize: 16),
                 ),
               ],
             ),
@@ -266,20 +256,17 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 8),
             CupertinoExpandableBoxLy(
               title: 'Tap to Expand/Collapse',
-              child: Padding(
-                padding: const .all(16.0),
-                child: Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    TextLy('This is expandable content', fontSize: 16),
-                    const SizedBox(height: 8),
-                    TextLy(
-                      'You can add any widgets here that will be shown or hidden when the user taps the header.',
-                      fontSize: 14,
-                      color: Colors.grey[600],
-                    ),
-                  ],
-                ),
+              child: Column(
+                crossAxisAlignment: .start,
+                children: [
+                  TextLy('This is expandable content', fontSize: 16),
+                  const SizedBox(height: 8),
+                  TextLy(
+                    'You can add any widgets here that will be shown or hidden when the user taps the header.',
+                    fontSize: 14,
+                    color: Colors.grey[600],
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 24),

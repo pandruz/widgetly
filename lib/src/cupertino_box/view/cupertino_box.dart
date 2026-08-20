@@ -68,6 +68,7 @@ class CupertinoBoxLy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.widthOf(context),
       decoration: BoxDecoration(
         // Add a bottom border for all items except the last one
         border: (isLast ?? false) == false
@@ -95,7 +96,7 @@ class CupertinoBoxLy extends StatelessWidget {
               ), // Last item has radius on bottom corners
       ),
       // Add consistent padding around the child widget
-      child: Padding(padding: const .all(10), child: child),
+      child: Padding(padding: const .fromLTRB(10, 5, 10, 5), child: child),
     );
   }
 }

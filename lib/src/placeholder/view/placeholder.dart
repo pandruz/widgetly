@@ -16,7 +16,6 @@ class PlaceholderLy extends StatelessWidget {
   /// If [resetAction] is provided, a reset button will be displayed.
   /// The [resetButtonLabel] and [resetButtonColor] customize the reset button.
   /// The [mainColor] affects the color of the icon and text.
-  /// The [paddingTop] and [paddingBottom] control the spacing around the placeholder.
   const PlaceholderLy({
     super.key,
     this.icon,

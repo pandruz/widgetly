@@ -144,40 +144,49 @@ class _TextFieldLyState extends State<TextFieldLy> {
 
   @override
   Widget build(BuildContext context) {
+    final double fieldHeight =
+        widget.height ??
+        ((widget.maxLines ?? 0) > 1 ? (40 * widget.maxLines!).toDouble() : 55);
+
     (widget.textEditingController ?? controller).selection =
         TextSelection.fromPosition(
           TextPosition(
             offset: (widget.textEditingController ?? controller).text.length,
           ),
         );
+
     return Row(
-      mainAxisAlignment: .spaceBetween,
-      crossAxisAlignment: (widget.maxLines ?? 0) > 1 ? .start : .center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: (widget.maxLines ?? 0) > 1
+          ? CrossAxisAlignment.start
+          : CrossAxisAlignment.center,
       children: [
         if (widget.label != null) buildLabel(),
         Expanded(
           child: SizedBox(
-            width:
-                MediaQuery.widthOf(context) /
-                (widget.label == null
-                    ? 1
-                    : kIsWeb == true
-                    ? 3
-                    : 1.9),
-            height:
-                widget.height ??
-                ((widget.maxLines ?? 0) > 1
-                    ? (40 * widget.maxLines!).toDouble()
-                    : 55),
-            child: Stack(
-              children: [
-                buildActionsWithTF(),
-                if ((widget.textEditingController ?? controller)
-                        .text
-                        .isNotEmpty &&
-                    widget.readOnly != true)
-                  buildButtons(),
-              ],
+            height: fieldHeight,
+            child: ClipRect(
+              child: OverflowBox(
+                alignment: Alignment.topCenter,
+                maxHeight: double.infinity,
+                child: KeyboardActions.done(
+                  doneText: LocalizationLy.instance.translate('Close'),
+                  theme: KeyboardActionsThemeData(foregroundColor: mainColor),
+                  child: SizedBox(
+                    height: fieldHeight,
+                    child: Stack(
+                      children: [
+                        buildTextField(),
+                        if ((widget.textEditingController ?? controller)
+                                .text
+                                .isNotEmpty &&
+                            widget.readOnly != true)
+                          buildButtons(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ),
@@ -252,41 +261,6 @@ class _TextFieldLyState extends State<TextFieldLy> {
     );
   }
 
-  KeyboardActionsConfig buildKeyboardConfig() {
-    return KeyboardActionsConfig(
-      keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
-      nextFocus: false,
-      actions: widget.readOnly != true && kIsWeb != true
-          ? [
-              KeyboardActionsItem(
-                focusNode: focusNode,
-                displayArrows: false,
-                toolbarButtons: [
-                  (node) {
-                    return GestureDetectorLy(
-                      onTap: () {
-                        try {
-                          node.unfocus();
-                          focusNode.unfocus();
-                        } catch (e) {
-                          //
-                        }
-                      },
-                      child: Padding(
-                        padding: const .all(10),
-                        child: TextLy(
-                          LocalizationLy.instance.translate('Close'),
-                        ),
-                      ),
-                    );
-                  },
-                ],
-              ),
-            ]
-          : [],
-    );
-  }
-
   InputDecoration buildDecoration() {
     return InputDecoration(
       contentPadding: .only(
@@ -323,9 +297,9 @@ class _TextFieldLyState extends State<TextFieldLy> {
   }
 
   Widget buildActionsWithTF() {
-    return KeyboardActions(
-      tapOutsideBehavior: TapOutsideBehavior.opaqueDismiss,
-      config: buildKeyboardConfig(),
+    return KeyboardActions.done(
+      doneText: LocalizationLy.instance.translate('Close'),
+      theme: KeyboardActionsThemeData(foregroundColor: mainColor),
       child: buildTextField(),
     );
   }
