@@ -1,5 +1,5 @@
 import 'package:widgetly/src/modal/bottom_sheet.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ModalRepository {
   ModalRepository._privateConstructor();

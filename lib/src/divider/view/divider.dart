@@ -1,5 +1,5 @@
 import 'package:widgetly/src/extensions/colors_extensions.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class DividerLy extends StatelessWidget {
   const DividerLy({super.key, this.thickness, this.height});

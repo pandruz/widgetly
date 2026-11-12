@@ -6,6 +6,40 @@
 
 A collection of customizable Flutter widgets designed for rapid UI development. Widgetly provides ready-to-use components with consistent styling and behavior.
 
+## Requirements
+
+- Flutter >= 3.47
+- Dart >= 3.13
+- `material_ui` (pulled in automatically; your app should import `package:material_ui/material_ui.dart` and use its `MaterialApp`)
+
+## Migrating to 2.0.0
+
+Widgetly now uses Flutter's standalone design packages instead of `package:flutter/material.dart` and `package:flutter/cupertino.dart`.
+
+1. Upgrade Flutter to 3.47 or newer.
+2. In your app, replace:
+
+```dart
+import 'package:flutter/material.dart';
+```
+
+with
+
+```dart
+import 'package:material_ui/material_ui.dart';
+```
+
+3. If some dependencies still import `package:flutter/material.dart`, wrap your app:
+
+```dart
+MaterialApp(
+  builder: (context, child) {
+    return MaterialUiCompatibilityBridge(child: child!);
+  },
+  home: HomeScreen(),
+);
+```
+
 ## Installation
 
 To use this package, add `widgetly` as a dependency in your `pubspec.yaml` file:
@@ -39,7 +73,7 @@ Components will use these global settings by default, but you can always overrid
 ButtonLy(
   label: 'CUSTOM',
   mainColor: Colors.orange,  // This overrides the global mainColor
-  buttonFunc: () => buttonFunc(),
+  onTap: () => handleSubmit(),
 )
 ```
 
@@ -71,13 +105,14 @@ AppBarLy(
 ### ButtonLy
 
 A versatile button component with support for outlined and filled styles, loading states, icons, and customizable colors.
+`buttonFunc` is deprecated. It still works, but you will get a warning. Prefer `onTap`:
 
 ```dart
 ButtonLy(
   label: 'SUBMIT',
   mainColor: Colors.blue,
   textColor: Colors.white, // Custom text color
-  buttonFunc: () => handleSubmit(),
+  onTap: () => handleSubmit(),
   showOutline: true,
   isLoading: false,
   icon: Icons.send, // Optional icon

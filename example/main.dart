@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:widgetly/widgetly.dart';
 
 void main() {
@@ -152,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ButtonLy(
                     label: 'FILLED',
                     mainColor: WidgetlyConfig().mainColor,
-                    buttonFunc: () {},
+                    onTap: () {},
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     label: 'OUTLINED',
                     mainColor: WidgetlyConfig().mainColor,
                     showOutline: true,
-                    buttonFunc: () {},
+                    onTap: () {},
                   ),
                 ),
               ],
@@ -174,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainColor: Colors.blue,
               isLoading: _isLoading,
               icon: Icons.download,
-              buttonFunc: () {
+              onTap: () {
                 setState(() => _isLoading = true);
                 Future.delayed(const Duration(seconds: 2), () {
                   if (mounted) setState(() => _isLoading = false);
@@ -194,8 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // LabelledTextLy example with multiple lines
             const LabelledTextLy(
               label: 'DESCRIPTION',
-              value:
-                  'This is a showcase of all the components available in the Widgetly package. Each component is designed to be customizable and easy to use.',
+              value: 'This is a showcase of all the components available in the Widgetly package. Each component is designed to be customizable and easy to use.',
               maxLines: 3,
             ),
             const SizedBox(height: 24),

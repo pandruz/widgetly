@@ -1,5 +1,6 @@
 import 'dart:ui';
-import 'package:flutter/material.dart';
+
+import 'package:material_ui/material_ui.dart';
 import 'package:widgetly/src/extensions/colors_extensions.dart';
 
 /// A stylized container widget that mimics iOS-style UI elements.

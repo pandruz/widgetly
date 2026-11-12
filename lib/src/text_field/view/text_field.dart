@@ -1,8 +1,9 @@
 import 'dart:io';
+
 import 'package:widgetly/src/extensions/colors_extensions.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:widgetly/src/localization/localization.dart';
 import 'package:widgetly/widgetly.dart';
@@ -115,16 +116,14 @@ class _TextFieldLyState extends State<TextFieldLy> {
 
   @override
   void initState() {
-    String locale = '';
-    if (!kIsWeb) {
+    String locale = WidgetlyConfig().locale?.languageCode ?? '';
+    if (locale.isEmpty && !kIsWeb) {
       try {
-        locale = Platform.localeName.substring(
-          0,
-          Platform.localeName.indexOf('_'),
-        );
-      } catch (e) {
-        //
-      }
+        final name = Platform.localeName;
+        locale = name.contains('_')
+            ? name.substring(0, name.indexOf('_'))
+            : name;
+      } catch (_) {}
     }
     LocalizationLy.instance.setLocale(locale.isEmpty ? 'en' : locale);
     controller = TextEditingController(
@@ -293,14 +292,6 @@ class _TextFieldLyState extends State<TextFieldLy> {
         ),
         borderRadius: .circular(10),
       ),
-    );
-  }
-
-  Widget buildActionsWithTF() {
-    return KeyboardActions.done(
-      doneText: LocalizationLy.instance.translate('Close'),
-      theme: KeyboardActionsThemeData(foregroundColor: mainColor),
-      child: buildTextField(),
     );
   }
 

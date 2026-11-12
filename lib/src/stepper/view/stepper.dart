@@ -1,6 +1,6 @@
 import 'package:widgetly/src/extensions/colors_extensions.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:widgetly/widgetly.dart';
 
 /// A customizable stepper widget for incrementing and decrementing values.
@@ -76,13 +76,10 @@ class StepperLy extends StatelessWidget {
       flex: 2,
       child: GestureDetectorLy(
         onTap: () {
-          if (decrement == false) {
-            if (qtyLimit != null && quantity < qtyLimit!) {
-              updateQuantity(
-                quantity + 1 <= qtyLimit! ? quantity + 1 : qtyLimit!,
-              );
-            } else {
-              updateQuantity(quantity + 1);
+          if (!decrement) {
+            final next = quantity + 1;
+            if (qtyLimit == null || next <= qtyLimit!) {
+              updateQuantity(next);
             }
           } else {
             if (quantity > 0) {

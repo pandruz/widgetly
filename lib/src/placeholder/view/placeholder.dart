@@ -1,7 +1,7 @@
 import 'package:widgetly/src/button/view/button.dart';
 import 'package:widgetly/src/extensions/colors_extensions.dart';
 import 'package:widgetly/src/localization/localization.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:widgetly/src/text/view/text.dart';
 
 /// A customizable placeholder widget for empty states or loading screens.
@@ -94,7 +94,7 @@ class PlaceholderLy extends StatelessWidget {
       padding: const .only(top: 20),
       child: ButtonLy(
         label: resetButtonLabel ?? LocalizationLy.instance.translate('Reset'),
-        buttonFunc: () {
+        onTap: () {
           resetAction!();
         },
         mainColor: resetButtonColor ?? Colors.red,

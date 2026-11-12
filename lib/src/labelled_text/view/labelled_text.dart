@@ -1,5 +1,5 @@
 import 'package:widgetly/src/extensions/colors_extensions.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:widgetly/src/text/view/text.dart';
 
 /// A customizable widget for displaying a label alongside a value.

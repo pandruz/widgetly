@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:widgetly/src/config/widgetly_config.dart';
 
 class TextLy extends StatelessWidget {
@@ -37,7 +37,7 @@ class TextLy extends StatelessWidget {
         color: color ?? Colors.black,
         fontSize: fontSize ?? 18,
         fontWeight: fontWeight ?? .normal,
-        fontFamily: WidgetlyConfig().fontFamily ?? fontFamily,
+        fontFamily: fontFamily ?? WidgetlyConfig().fontFamily,
         fontStyle: italic == true ? FontStyle.italic : null,
         decoration: underlined == true ? TextDecoration.underline : null,
         height: height,

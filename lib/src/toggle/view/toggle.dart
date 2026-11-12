@@ -1,5 +1,5 @@
 import 'package:widgetly/src/extensions/colors_extensions.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:widgetly/widgetly.dart';
 
 /// A customizable toggle switch widget with a description label.

@@ -1,3 +1,13 @@
+## 2.0.0
+
+- **Breaking:** Migrated from `package:flutter/material.dart` and `package:flutter/cupertino.dart` to the standalone `material_ui` and `cupertino_ui` packages. Apps using Widgetly must depend on `material_ui` (and use its `MaterialApp` / theme), or wrap legacy subtrees with `MaterialUiCompatibilityBridge`. Requires Flutter >= 3.47 and Dart >= 3.13
+- Deprecated `ButtonLy.buttonFunc` in favor of `onTap` (`buttonFunc` still works)
+- Updated README and example for the new imports and `ButtonLy` API
+- TextLy now prefers its own `fontFamily` over the global config
+- Fixed StepperLy incrementing past `qtyLimit`
+- TextFieldLy now reads locale from WidgetlyConfig
+- Fixed HexColor.toHex for the current Color API
+
 ## 1.0.2
 
 - Updated components and packages

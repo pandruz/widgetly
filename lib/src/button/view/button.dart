@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:widgetly/widgetly.dart';
 
 /// A customizable button widget with different states and styling options.
@@ -12,7 +12,8 @@ class ButtonLy extends StatelessWidget {
   /// The [label] is displayed as the button text.
   /// The [mainColor] defines the primary color of the button.
   /// The [textColor] defines the color of the text and the icon.
-  /// The [buttonFunc] is called when the button is tapped.
+  /// The [onTap] is called when the button is tapped.
+  /// The [buttonFunc] is deprecated and will be removed in a future version. Use [onTap] instead.
   /// If [showOutline] is true, the button will have an outlined style.
   /// If [isLoading] is true, the button will display a loading indicator.
   const ButtonLy({
@@ -20,12 +21,13 @@ class ButtonLy extends StatelessWidget {
     required this.label,
     this.mainColor,
     this.textColor,
-    this.buttonFunc,
+    Function()? onTap,
+    @Deprecated('Use onTap instead') Function()? buttonFunc,
     this.showOutline,
     this.isLoading,
     this.disabled,
     this.icon,
-  });
+  }) : onTap = onTap ?? buttonFunc;
 
   /// The text displayed on the button.
   /// Will be displayed in uppercase if the button is actionable.
@@ -44,7 +46,7 @@ class ButtonLy extends StatelessWidget {
 
   /// Callback function triggered when the button is tapped.
   /// If null, the button will appear disabled (but still visible).
-  final Function()? buttonFunc;
+  final Function()? onTap;
 
   /// When true, the button will have an outlined style instead of filled.
   /// Defaults to false if not specified.
@@ -68,8 +70,8 @@ class ButtonLy extends StatelessWidget {
       ignoring: disabled ?? false,
       child: GestureDetectorLy(
         onTap: () {
-          if (buttonFunc != null) {
-            buttonFunc!();
+          if (onTap != null) {
+            onTap!();
           }
         },
         child: Opacity(
@@ -114,7 +116,7 @@ class ButtonLy extends StatelessWidget {
                 child: Icon(icon, color: itemsColor, size: 26),
               ),
             TextLy(
-              buttonFunc != null ? label.toUpperCase() : label,
+              onTap != null ? label.toUpperCase() : label,
               color: itemsColor,
               fontSize: 26,
               fontWeight: .w500,

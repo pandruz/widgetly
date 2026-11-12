@@ -1,5 +1,5 @@
 import 'package:widgetly/src/extensions/iterable_extensions.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:widgetly/widgetly.dart';
 
 /// A customizable app bar widget with support for title, navigation, and action buttons.
